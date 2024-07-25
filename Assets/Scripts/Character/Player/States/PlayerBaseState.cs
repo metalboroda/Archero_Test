@@ -8,6 +8,8 @@ namespace Assets.Scripts.Character.Player.States
   {
     protected PlayerController PlayerController;
     protected PlayerMovementHandler PlayerMovementHandler;
+    protected CharacterEnemyDetection CharacterEnemyDetection;
+    protected PlayerWeaponHandler PlayerWeaponHandler;
     protected CharacterAnimationHandler CharacterAnimationHandler;
 
     protected InputService InputService;
@@ -16,12 +18,14 @@ namespace Assets.Scripts.Character.Player.States
     public PlayerBaseState(PlayerController playerController) {
       PlayerController = playerController;
       PlayerMovementHandler = PlayerController.PlayerMovementHandler;
+      CharacterEnemyDetection = PlayerController.CharacterEnemyDetection;
+      PlayerWeaponHandler = PlayerController.PlayerWeaponHandler;
       CharacterAnimationHandler = PlayerController.CharacterAnimationHandler;
 
       InputService = new InputService();
       RigidbodyMovementService = PlayerMovementHandler.RigidbodyMovementService;
 
-      InputService.EnableGeneralMap();
+      InputService.EnableMovementMap();
     }
   }
 }

@@ -11,12 +11,16 @@ namespace Assets.Scripts.Services
       _playerInputActions = new PlayerInputActions();
     }
 
-    public void EnableGeneralMap() {
-      _playerInputActions.General.Enable();
+    public void EnableMovementMap() {
+      _playerInputActions.Movement.Enable();
+    }
+
+    public void DisableMovementMap() {
+      _playerInputActions.Movement.Disable();
     }
 
     public Vector2 GeMovementVector() {
-      return _playerInputActions.General.Movement.ReadValue<Vector2>();
+      return _playerInputActions.Movement.Movement.ReadValue<Vector2>().normalized;
     }
   }
 }

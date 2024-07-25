@@ -1,6 +1,5 @@
-using Assets.Scripts.Services.Character;
 using Assets.Scripts.Services;
-using UnityEngine;
+using Assets.Scripts.Services.Character;
 
 namespace Assets.Scripts.Character.Player.States
 {
@@ -10,8 +9,7 @@ namespace Assets.Scripts.Character.Player.States
 
     public override void Update() {
       CharacterAnimationHandler.MovementValue(PlayerMovementHandler.GetNormalizedSpeed());
-
-      Debug.Log(PlayerMovementHandler.GetNormalizedSpeed());
+      CharacterEnemyDetection.DetectEnemies();
     }
 
     public override void FixedUpdate() {
