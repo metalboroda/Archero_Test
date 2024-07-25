@@ -9,7 +9,7 @@ namespace Assets.Scripts.Character
     [SerializeField] private CharacterAnimationSO _characterAnimationSO;
     [Header("Settings")]
     [SerializeField] private float crossfadeDuration = 0.2f;
-    [SerializeField] private float dampingTime = 0.1f;
+    [SerializeField] private float dampingTime = 0.15f;
 
     private Animator _animator;
 

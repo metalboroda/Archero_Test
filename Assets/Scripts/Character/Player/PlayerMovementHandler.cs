@@ -5,8 +5,8 @@ namespace Assets.Scripts.Character.Player
 {
   public class PlayerMovementHandler : MonoBehaviour
   {
-    [SerializeField] private float maxMovementSpeed = 5;
-    [SerializeField] private float rotationSpeed = 10;
+    [SerializeField] private float maxMovementSpeed = 5f;
+    [SerializeField] private float rotationSpeed = 5f;
 
     public RigidbodyMovementService RigidbodyMovementService { get; private set; }
 

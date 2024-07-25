@@ -490,7 +490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMovementSpeed: 5
-  rotationSpeed: 10
+  rotationSpeed: 5
 --- !u!114 &6323482512340388990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -536,7 +536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterAnimationSO: {fileID: 11400000, guid: 7f8ac3324463c464ab431511a494786d, type: 2}
   crossfadeDuration: 0.2
-  dampingTime: 0.1
+  dampingTime: 0.15
 --- !u!1 &2184461368602747365
 GameObject:
   m_ObjectHideFlags: 0
