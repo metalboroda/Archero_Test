@@ -7,11 +7,13 @@ namespace Assets.Scripts.Character.Player
   public class PlayerController : MonoBehaviour
   {
     public PlayerMovementHandler PlayerMovementHandler { get; private set; }
+    public CharacterAnimationHandler CharacterAnimationHandler { get; private set; }
 
     private FiniteStateMachine _finiteStateMachine;
 
     private void Awake() {
       PlayerMovementHandler = GetComponent<PlayerMovementHandler>();
+      CharacterAnimationHandler = GetComponent<CharacterAnimationHandler>();
 
       _finiteStateMachine = new FiniteStateMachine();
     }

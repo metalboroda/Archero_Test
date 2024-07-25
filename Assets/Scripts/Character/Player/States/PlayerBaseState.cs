@@ -8,6 +8,7 @@ namespace Assets.Scripts.Character.Player.States
   {
     protected PlayerController PlayerController;
     protected PlayerMovementHandler PlayerMovementHandler;
+    protected CharacterAnimationHandler CharacterAnimationHandler;
 
     protected InputService InputService;
     protected RigidbodyMovementService RigidbodyMovementService;
@@ -15,6 +16,7 @@ namespace Assets.Scripts.Character.Player.States
     public PlayerBaseState(PlayerController playerController) {
       PlayerController = playerController;
       PlayerMovementHandler = PlayerController.PlayerMovementHandler;
+      CharacterAnimationHandler = PlayerController.CharacterAnimationHandler;
 
       InputService = new InputService();
       RigidbodyMovementService = PlayerMovementHandler.RigidbodyMovementService;

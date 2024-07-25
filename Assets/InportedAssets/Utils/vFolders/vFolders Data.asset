@@ -59,6 +59,17 @@ MonoBehaviour:
     - 60d554032e7b2b94c98abf0149766d89
     - 9b00bfe7b0901574db057e0ed1c13d4b
     - 848c4b6ce61c80049aa2cfe048bbc737
+    - 9588cb928765fa3438d005a1d6fcb23c
+    - a117fadd8b0f449489515968cdc848a2
+    - faad7964e4c4ec5479680aef8be9f328
+    - d87f313f7005137429c94312060f5bac
+    - 1804c259812440a4094c88e7c939de6f
+    - e802cb85f5ff0b24c94e4a524f3a3140
+    - 1d7d220937dd77047ab1de98fc3e509c
+    - e1670034eeffe1043ad487578981fea6
+    - 14d8f7c733ac17d4b873f6c5518922cb
+    - 380e31ae69221a2459c3d07667f6edd0
+    - 29bba2c539398844789feba31f12c614
     values:
     - guid: 00000000000000001000000000000000
       iColor: 0
@@ -281,6 +292,61 @@ MonoBehaviour:
       customIcon: Mesh Icon
       autoIconDirty: 0
     - guid: 848c4b6ce61c80049aa2cfe048bbc737
+      iColor: 0
+      autoIcon: 
+      customIcon: 
+      autoIconDirty: 0
+    - guid: 9588cb928765fa3438d005a1d6fcb23c
+      iColor: 0
+      autoIcon: 
+      customIcon: 
+      autoIconDirty: 0
+    - guid: a117fadd8b0f449489515968cdc848a2
+      iColor: 0
+      autoIcon: 
+      customIcon: 
+      autoIconDirty: 0
+    - guid: faad7964e4c4ec5479680aef8be9f328
+      iColor: 0
+      autoIcon: ScriptableObject Icon
+      customIcon: 
+      autoIconDirty: 0
+    - guid: d87f313f7005137429c94312060f5bac
+      iColor: 0
+      autoIcon: 
+      customIcon: 
+      autoIconDirty: 0
+    - guid: 1804c259812440a4094c88e7c939de6f
+      iColor: 0
+      autoIcon: cs Script Icon
+      customIcon: 
+      autoIconDirty: 0
+    - guid: e802cb85f5ff0b24c94e4a524f3a3140
+      iColor: 0
+      autoIcon: 
+      customIcon: 
+      autoIconDirty: 0
+    - guid: 1d7d220937dd77047ab1de98fc3e509c
+      iColor: 0
+      autoIcon: 
+      customIcon: 
+      autoIconDirty: 0
+    - guid: e1670034eeffe1043ad487578981fea6
+      iColor: 0
+      autoIcon: 
+      customIcon: ScriptableObject Icon
+      autoIconDirty: 0
+    - guid: 14d8f7c733ac17d4b873f6c5518922cb
+      iColor: 0
+      autoIcon: 
+      customIcon: 
+      autoIconDirty: 0
+    - guid: 380e31ae69221a2459c3d07667f6edd0
+      iColor: 0
+      autoIcon: 
+      customIcon: AnimationClip Icon
+      autoIconDirty: 0
+    - guid: 29bba2c539398844789feba31f12c614
       iColor: 0
       autoIcon: 
       customIcon: 
