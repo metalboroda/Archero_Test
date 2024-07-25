@@ -536,7 +536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterAnimationSO: {fileID: 11400000, guid: 7f8ac3324463c464ab431511a494786d, type: 2}
   crossfadeDuration: 0.2
-  dampingTime: 0.05
+  dampingTime: 0.1
 --- !u!1 &2184461368602747365
 GameObject:
   m_ObjectHideFlags: 0

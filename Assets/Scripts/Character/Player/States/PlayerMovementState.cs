@@ -8,11 +8,16 @@ namespace Assets.Scripts.Character.Player.States
     public PlayerMovementState(PlayerController playerController) : base(playerController) { }
 
     public override void Enter() {
-      CharacterAnimationHandler.MovementAnimation();
+      CharacterAnimationHandler.MovementAnimation2D();
     }
 
     public override void Update() {
-      CharacterAnimationHandler.MovementValue(PlayerMovementHandler.GetNormalizedSpeed());
+      // Wanted to make 2D animation blend for standard movement
+      //CharacterAnimationHandler.MovementValue(PlayerMovementHandler.GetNormalizedSpeed());
+
+      CharacterAnimationHandler.MovementValue2D(
+        RigidbodyMovementService.GetDirection2D().x,
+        RigidbodyMovementService.GetDirection2D().y);
     }
 
     public override void FixedUpdate() {

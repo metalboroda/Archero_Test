@@ -10,8 +10,14 @@ namespace Assets.Scripts.Character.Player.States
       _target = target;
     }
 
+    public override void Enter() {
+      CharacterAnimationHandler.MovementAnimation2D();
+    }
+
     public override void Update() {
-      CharacterAnimationHandler.MovementValue(PlayerMovementHandler.GetNormalizedSpeed());
+      CharacterAnimationHandler.MovementValue2D(
+        RigidbodyMovementService.GetDirection2D().x,
+        RigidbodyMovementService.GetDirection2D().y);
     }
 
     public override void FixedUpdate() {

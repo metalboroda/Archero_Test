@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: CharacterAnimation
   m_EditorClassIdentifier: 
   <MovementAnimation>k__BackingField: Movement
+  <MovementAnimation2D>k__BackingField: Movement2D
   <MovementValue>k__BackingField: MovementValue
+  <MovementValueX>k__BackingField: MovementValueX
+  <MovementValueY>k__BackingField: MovementValueY

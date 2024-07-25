@@ -26,8 +26,17 @@ namespace Assets.Scripts.Character
       _animationService.Crossfade(_characterAnimationSO.MovementAnimation);
     }
 
+    public void MovementAnimation2D() {
+      _animationService.Crossfade(_characterAnimationSO.MovementAnimation2D);
+    }
+
     public void MovementValue(float value) {
       _animationService.SetFloat(_characterAnimationSO.MovementValue, value);
+    }
+
+    public void MovementValue2D(float valueX, float valueY) {
+      _animationService.SetFloat(_characterAnimationSO.MovementValueX, valueX);
+      _animationService.SetFloat(_characterAnimationSO.MovementValueY, valueY);
     }
   }
 }
