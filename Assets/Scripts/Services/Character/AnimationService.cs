@@ -9,8 +9,7 @@ namespace Assets.Scripts.Services.Character
 
     private Animator _animator;
 
-    public AnimationService(float crossfadeDuration, float dampingTime,
-      Animator animator) {
+    public AnimationService(float crossfadeDuration, float dampingTime, Animator animator) {
       _crossfadeDuration = crossfadeDuration;
       _dampingTime = dampingTime;
 
@@ -18,7 +17,11 @@ namespace Assets.Scripts.Services.Character
     }
 
     public void Crossfade(string name) {
-      _animator.CrossFadeInFixedTime(name, _crossfadeDuration);
+      AnimatorStateInfo currentState = _animator.GetCurrentAnimatorStateInfo(0);
+
+      if (currentState.IsName(name) == false && _animator.IsInTransition(0) == false) {
+        _animator.CrossFadeInFixedTime(name, _crossfadeDuration);
+      }
     }
 
     public void SetFloat(string name, float value) {
