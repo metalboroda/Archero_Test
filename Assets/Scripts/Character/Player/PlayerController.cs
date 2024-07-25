@@ -11,7 +11,7 @@ namespace Assets.Scripts.Character.Player
     public PlayerWeaponHandler PlayerWeaponHandler { get; private set; }
     public CharacterAnimationHandler CharacterAnimationHandler { get; private set; }
 
-    private FiniteStateMachine _finiteStateMachine;
+    public FiniteStateMachine FiniteStateMachine { get; private set; }
 
     private void Awake() {
       PlayerMovementHandler = GetComponent<PlayerMovementHandler>();
@@ -19,23 +19,23 @@ namespace Assets.Scripts.Character.Player
       PlayerWeaponHandler = GetComponent<PlayerWeaponHandler>();
       CharacterAnimationHandler = GetComponent<CharacterAnimationHandler>();
 
-      _finiteStateMachine = new FiniteStateMachine();
+      FiniteStateMachine = new FiniteStateMachine();
     }
 
     private void Start() {
-      _finiteStateMachine.Init(new PlayerMovementState(this));
+      FiniteStateMachine.Init(new PlayerMovementState(this));
     }
 
     private void Update() {
-      _finiteStateMachine.CurrentState.Update();
+      FiniteStateMachine.CurrentState.Update();
     }
 
     private void FixedUpdate() {
-      _finiteStateMachine.CurrentState.FixedUpdate();
+      FiniteStateMachine.CurrentState.FixedUpdate();
     }
 
     private void OnDestroy() {
-      _finiteStateMachine.CurrentState.Exit();
+      FiniteStateMachine.CurrentState.Exit();
     }
   }
 }

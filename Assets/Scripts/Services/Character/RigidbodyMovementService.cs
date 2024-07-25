@@ -32,5 +32,18 @@ namespace Assets.Scripts.Services.Character
         _rigidbody.MoveRotation(smoothedRotation);
       }
     }
+
+    public void LookAt(Transform target) {
+      Vector3 directionToTarget = (target.position - _rigidbody.position).normalized;
+
+      directionToTarget.y = 0;
+
+      if (directionToTarget != Vector3.zero) {
+        Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+        Quaternion smoothedRotation = Quaternion.Lerp(_rigidbody.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
+
+        _rigidbody.MoveRotation(smoothedRotation);
+      }
+    }
   }
 }

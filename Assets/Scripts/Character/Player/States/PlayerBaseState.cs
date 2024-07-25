@@ -1,3 +1,4 @@
+using Assets.__Game.Resources.Scripts.StateMachine;
 using Assets.__Game.Scripts.Infrastructure;
 using Assets.Scripts.Services;
 using Assets.Scripts.Services.Character;
@@ -12,6 +13,7 @@ namespace Assets.Scripts.Character.Player.States
     protected PlayerWeaponHandler PlayerWeaponHandler;
     protected CharacterAnimationHandler CharacterAnimationHandler;
 
+    protected FiniteStateMachine FiniteStateMachine;
     protected InputService InputService;
     protected RigidbodyMovementService RigidbodyMovementService;
 
@@ -22,6 +24,7 @@ namespace Assets.Scripts.Character.Player.States
       PlayerWeaponHandler = PlayerController.PlayerWeaponHandler;
       CharacterAnimationHandler = PlayerController.CharacterAnimationHandler;
 
+      FiniteStateMachine = PlayerController.FiniteStateMachine;
       InputService = new InputService();
       RigidbodyMovementService = PlayerMovementHandler.RigidbodyMovementService;
 

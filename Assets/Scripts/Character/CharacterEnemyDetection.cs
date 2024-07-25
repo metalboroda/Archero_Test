@@ -1,4 +1,4 @@
-using Assets.Scripts.Item;
+﻿using Assets.Scripts.Item;
 using UnityEngine;
 
 namespace Assets.Scripts.Character
@@ -9,6 +9,8 @@ namespace Assets.Scripts.Character
     [SerializeField] private LayerMask enemyLayer;
     [Space]
     [SerializeField] private int maxEnemies = 10;
+    [Space]
+    [SerializeField] private Transform detectionPoint;
 
     private Collider[] _hitColliders;
 
@@ -16,23 +18,29 @@ namespace Assets.Scripts.Character
       _hitColliders = new Collider[maxEnemies];
     }
 
-    public Transform DetectEnemies() {
+    public Transform GetNearestEnemy() {
       int numColliders = Physics.OverlapSphereNonAlloc(transform.position, detectionRadius, _hitColliders, enemyLayer);
-      ShootingPoint shootingPoint = null;
+      Transform nearestEnemyTransform = null;
+      float nearestDistance = Mathf.Infinity;
 
       for (int i = 0; i < numColliders; i++) {
         Vector3 directionToEnemy = _hitColliders[i].transform.position - transform.position;
-        RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, directionToEnemy, out hit, detectionRadius, enemyLayer)) {
-          shootingPoint = hit.transform.GetComponent<ShootingPoint>();
+        if (Physics.Raycast(detectionPoint.position, directionToEnemy, out RaycastHit hit, detectionRadius, enemyLayer)) {
+          ShootingPoint shootingPoint = hit.transform.GetComponentInChildren<ShootingPoint>();
 
           if (shootingPoint != null) {
-            return shootingPoint.transform;
+            float distanceToEnemy = directionToEnemy.magnitude;
+
+            if (distanceToEnemy < nearestDistance) {
+              nearestDistance = distanceToEnemy;
+              nearestEnemyTransform = shootingPoint.transform;
+            }
           }
         }
       }
-      return null;
+
+      return nearestEnemyTransform;
     }
   }
 }
