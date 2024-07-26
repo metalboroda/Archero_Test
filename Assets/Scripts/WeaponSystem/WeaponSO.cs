@@ -10,6 +10,7 @@ namespace Assets.Scripts.WeaponSystem
     [field: Header("Settings")]
     [field: SerializeField] public string WeaponName { get; private set; }
     [field: SerializeField] public float Damage { get; set; }
+    [field: SerializeField] public float FirstShotDelay { get; private set; }
     [field: SerializeField] public float FireRate { get; private set; }
 
     [field: Header("Animations")]

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8bcec810e8d1f41813b440fff5c2d8, type: 3}
+  m_Name: AssaultRifle_Enemy
+  m_EditorClassIdentifier: 
+  <WeaponPrefab>k__BackingField: {fileID: 5292108845969532097, guid: 579a707b6198dfb4e8d0a06c0f797c7e, type: 3}
+  <WeaponName>k__BackingField: AssaultRifle
+  <Damage>k__BackingField: 25
+  <FirstShotDelay>k__BackingField: 0.5
+  <FireRate>k__BackingField: 0.5
+  <MovementAnimation>k__BackingField: AssaultRifleMovement2D
+  <ProjectilePrefab>k__BackingField: {fileID: 2285816256493072417, guid: 387fa6d60d222904aa1c5557cacefb2b, type: 3}
+  <ProjectileSpeed>k__BackingField: 50

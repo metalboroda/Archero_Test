@@ -97,6 +97,8 @@ namespace Assets.Scripts.Character
     }
 
     private IEnumerator ShootCoroutine() {
+      yield return new WaitForSeconds(_currentWeapon.FirstShotDelay);
+
       while (true) {
         Attack();
 
