@@ -4,11 +4,13 @@ namespace Assets.Scripts.Character.Enemy
 {
   public class EnemyController : CharacterControllerBase
   {
+    public EnemyMovementHandler EnemyMovementHandler { get; private set; }
     public CharacterEnemyDetection CharacterEnemyDetection { get; private set; }
     public CharacterWeaponHandler CharacterWeaponHandler { get; private set; }
     public CharacterAnimationHandler CharacterAnimationHandler { get; private set; }
 
     protected override void Awake() {
+      EnemyMovementHandler = GetComponent<EnemyMovementHandler>();
       CharacterEnemyDetection = GetComponent<CharacterEnemyDetection>();
       CharacterWeaponHandler = GetComponent<CharacterWeaponHandler>();
       CharacterAnimationHandler = GetComponent<CharacterAnimationHandler>();

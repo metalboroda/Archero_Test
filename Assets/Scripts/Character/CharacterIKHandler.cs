@@ -68,10 +68,14 @@ namespace Assets.Scripts.Character
       if (enemyDetected.Target != null) {
         _aimIK.solver.target = enemyDetected.Target;
 
-        StartCoroutine(DoSmoothAimWeight(1));
+        if (gameObject.activeInHierarchy) {
+          StartCoroutine(DoSmoothAimWeight(1));
+        }
       }
       else {
-        StartCoroutine(DoSmoothAimWeight(0));
+        if (gameObject.activeInHierarchy) {
+          StartCoroutine(DoSmoothAimWeight(0));
+        }
 
         _aimIK.solver.target = null;
       }
