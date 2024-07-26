@@ -26,6 +26,7 @@ namespace Assets.Scripts.Character.Player
     }
 
     protected override void OnDeath() {
+      Destroy(gameObject);
     }
   }
 }

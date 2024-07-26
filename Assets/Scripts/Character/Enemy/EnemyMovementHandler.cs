@@ -11,12 +11,12 @@ namespace Assets.Scripts.Character.Enemy
 
     private NavMeshAgent _navMeshAgent;
 
-    public AgentMovementService MovementService { get; private set; }
+    public AgentMovementService AgentMovementService { get; private set; }
 
     private void Awake() {
       _navMeshAgent = GetComponent<NavMeshAgent>();
 
-      MovementService = new AgentMovementService(maxMovementSpeed, rotationSpeed, _navMeshAgent);
+      AgentMovementService = new AgentMovementService(maxMovementSpeed, rotationSpeed, _navMeshAgent);
     }
   }
 }

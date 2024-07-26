@@ -23,7 +23,7 @@ namespace Assets.Scripts.Character.Enemy.States
       CharacterAnimationHandler = EnemyController.CharacterAnimationHandler;
 
       FiniteStateMachine = EnemyController.FiniteStateMachine;
-      AgentMovementService = EnemyMovementHandler.MovementService;
+      AgentMovementService = EnemyMovementHandler.AgentMovementService;
     }
   }
 }

@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Assets.Scripts.Character.Enemy.States
 {
   public class EnemyMovementState : EnemyBaseState

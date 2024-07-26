@@ -42,6 +42,21 @@ namespace Assets.Scripts.Services.Character
       }
     }
 
+    public float GetNormalizedSpeed() {
+      float threshold = 0.01f;
+
+      Vector3 horizontalVelocity = new Vector3(_navMeshAgent.velocity.x, 0, _navMeshAgent.velocity.z);
+      float velocityMagnitude = horizontalVelocity.magnitude;
+
+      if (velocityMagnitude < threshold) {
+        velocityMagnitude = 0;
+      }
+
+      float normalizedSpeed = Mathf.Clamp01(velocityMagnitude / _maxMovementSpeed);
+
+      return normalizedSpeed;
+    }
+
     public Vector2 GetDirection2D() {
       float threshold = 0.01f;
 

@@ -24,18 +24,18 @@ namespace Assets.Scripts.Character.Enemy.States
     }
 
     public override void Update() {
-      /*if (RigidbodyMovementService.GetNormalizedSpeed() < 0.1f) {
+      if (AgentMovementService.GetNormalizedSpeed() < 0.1f) {
         EventBus<EventStructs.CharacterBattleMovementStopped>.Raise(new EventStructs.CharacterBattleMovementStopped {
-          TransformID = PlayerController.transform.GetInstanceID(),
+          TransformID = EnemyController.transform.GetInstanceID(),
           Stopped = true
         });
       }
-      else if (RigidbodyMovementService.GetNormalizedSpeed() >= 0.1f) {
+      else if (AgentMovementService.GetNormalizedSpeed() >= 0.1f) {
         EventBus<EventStructs.CharacterBattleMovementStopped>.Raise(new EventStructs.CharacterBattleMovementStopped {
-          TransformID = PlayerController.transform.GetInstanceID(),
+          TransformID = EnemyController.transform.GetInstanceID(),
           Stopped = false
         });
-      }*/
+      }
     }
 
     public override void FixedUpdate() {

@@ -75,7 +75,9 @@ GameObject:
   - component: {fileID: 7708505162571691201}
   - component: {fileID: 6839168683676825264}
   - component: {fileID: 4859202456723976691}
+  - component: {fileID: 1552043412352059047}
   - component: {fileID: 2454159100798633132}
+  - component: {fileID: 2693902333121530693}
   - component: {fileID: 3191379339975159540}
   - component: {fileID: 6323482512340388990}
   - component: {fileID: 3648040994524816238}
@@ -182,6 +184,29 @@ CapsuleCollider:
   m_Height: 1.825
   m_Direction: 1
   m_Center: {x: 0, y: 0.925, z: 0}
+--- !u!136 &1552043412352059047
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781177172212328454}
+  m_Material: {fileID: 13400000, guid: 0d780851a5e44bb48885c0896f23a6f7, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.35
+  m_Height: 1.825
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.925, z: 0}
 --- !u!114 &2454159100798633132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,6 +219,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: def11781ecb20d54eb8d08a5026ce4ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2693902333121530693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781177172212328454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3addad4f7e49b564d87cf4be7675a638, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 100
 --- !u!114 &3191379339975159540
 MonoBehaviour:
   m_ObjectHideFlags: 0
