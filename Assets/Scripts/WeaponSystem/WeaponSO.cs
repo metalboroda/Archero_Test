@@ -5,7 +5,7 @@ namespace Assets.Scripts.WeaponSystem
   public abstract class WeaponSO : ScriptableObject
   {
     [field: Header("Visual")]
-    [field: SerializeField] public GameObject Prefab { get; private set; }
+    [field: SerializeField] public GameObject WeaponPrefab { get; private set; }
 
     [field: Header("Settings")]
     [field: SerializeField] public string WeaponName { get; private set; }
@@ -22,17 +22,13 @@ namespace Assets.Scripts.WeaponSystem
         Destroy(_instantiatedWeapon);
       }
 
-      _instantiatedWeapon = Instantiate(Prefab, equipPoint.position, equipPoint.rotation, equipPoint);
+      _instantiatedWeapon = Instantiate(WeaponPrefab, equipPoint.position, equipPoint.rotation, equipPoint);
 
       WeaponHandler currentWeaponHandler = _instantiatedWeapon.GetComponent<WeaponHandler>();
-
-      OnEquip(equipPoint);
 
       return currentWeaponHandler;
     }
 
-    protected abstract void OnEquip(Transform equipPoint);
-
-    public abstract void Attack();
+    public abstract void Attack(Transform spawnPoint);
   }
 }

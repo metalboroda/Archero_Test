@@ -1,6 +1,5 @@
 using __Game.Resources.Scripts.EventBus;
 using Assets.Scripts.WeaponSystem;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Assets.Scripts.Character.Player
@@ -11,6 +10,7 @@ namespace Assets.Scripts.Character.Player
 
     private WeaponSO _currentWeapon;
     private WeaponEquipPoint _weaponEquipPoint;
+    private WeaponHandler _currentWeaponHandler;
 
     private void Awake() {
       _weaponEquipPoint = GetComponentInChildren<WeaponEquipPoint>();
@@ -25,8 +25,8 @@ namespace Assets.Scripts.Character.Player
     }
 
     public void Attack() {
-      if (_currentWeapon != null) {
-        _currentWeapon.Attack();
+      if (_currentWeapon != null && _currentWeaponHandler != null) {
+        _currentWeapon.Attack(_currentWeaponHandler.ShootingPoint);
       }
     }
 
@@ -40,13 +40,13 @@ namespace Assets.Scripts.Character.Player
       if (newWeapon == null) return;
 
       _currentWeapon = newWeapon;
-      WeaponHandler currentWeaponHandler = _currentWeapon.Equip(_weaponEquipPoint.transform);
+      _currentWeaponHandler = _currentWeapon.Equip(_weaponEquipPoint.transform);
 
       EventBus<EventStructs.WeaponEquipped>.Raise(new EventStructs.WeaponEquipped {
         TransformID = transform.GetInstanceID(),
         AnimationName = _currentWeapon.MovementAnimation,
-        WeaponHandler = currentWeaponHandler,
-        LeftHandPoint = currentWeaponHandler.LeftHandPoint
+        WeaponHandler = _currentWeaponHandler,
+        LeftHandPoint = _currentWeaponHandler.LeftHandPoint
       });
     }
   }
