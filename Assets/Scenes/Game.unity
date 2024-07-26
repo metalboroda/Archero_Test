@@ -691,7 +691,7 @@ GameObject:
   - component: {fileID: 546781526}
   - component: {fileID: 546781527}
   m_Layer: 0
-  m_Name: Virtual Camera
+  m_Name: PlayerMainCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -705,7 +705,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 546781525}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.47185796, y: 0.000000021454225, z: -0.000000011481954, w: 0.8816746}
+  m_LocalRotation: {x: 0.47185794, y: -0.00000002150093, z: 0.000000011506949, w: 0.8816746}
   m_LocalPosition: {x: 0, y: 15, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -735,7 +735,7 @@ MonoBehaviour:
   m_Follow: {fileID: 71529168}
   m_Lens:
     FieldOfView: 70
-    OrthographicSize: 11.5
+    OrthographicSize: 10
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -1658,7 +1658,7 @@ Camera:
   far clip plane: 1000
   field of view: 70
   orthographic: 1
-  orthographic size: 11.5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1682,7 +1682,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.47185796, y: 0.000000021454225, z: -0.000000011481954, w: 0.8816746}
+  m_LocalRotation: {x: 0.47185794, y: -0.00000002150093, z: 0.000000011506949, w: 0.8816746}
   m_LocalPosition: {x: 0, y: 15, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
