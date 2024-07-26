@@ -10,14 +10,17 @@ namespace Assets.Scripts.Character.Player
   {
     [SerializeField] private WeaponSO weapon;
 
+    private float _lastShotTime;
+    private Coroutine _shootingCoroutine;
+
     private WeaponSO _currentWeapon;
     private WeaponEquipPoint _weaponEquipPoint;
     private WeaponHandler _currentWeaponHandler;
 
     private InputService _inputService;
-    private Coroutine _shootingCoroutine;
 
     private EventBinding<EventStructs.PlayerBattleMovementStopped> _playerBattleMovementStopped;
+
 
     private void Awake() {
       _inputService = new InputService();
@@ -44,9 +47,9 @@ namespace Assets.Scripts.Character.Player
     }
 
     public void Attack() {
-      if (_currentWeapon != null && _currentWeaponHandler != null) {
-
+      if (_currentWeapon != null && _currentWeaponHandler != null && Time.time - _lastShotTime >= _currentWeapon.FireRate) {
         _currentWeapon.Attack(_currentWeaponHandler.ShootingPoint);
+        _lastShotTime = Time.time;
       }
     }
 
