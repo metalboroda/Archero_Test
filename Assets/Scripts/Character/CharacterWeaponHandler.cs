@@ -4,9 +4,9 @@ using Assets.Scripts.WeaponSystem;
 using System.Collections;
 using UnityEngine;
 
-namespace Assets.Scripts.Character.Player
+namespace Assets.Scripts.Character
 {
-  public class PlayerWeaponHandler : MonoBehaviour
+  public class CharacterWeaponHandler : MonoBehaviour
   {
     [SerializeField] private WeaponSO weapon;
 

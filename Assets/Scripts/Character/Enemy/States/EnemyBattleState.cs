@@ -1,13 +1,13 @@
 using __Game.Resources.Scripts.EventBus;
 using UnityEngine;
 
-namespace Assets.Scripts.Character.Player.States
+namespace Assets.Scripts.Character.Enemy.States
 {
-  public class PlayerBattleState : PlayerBaseState
+  public class EnemyBattleState : EnemyBaseState
   {
     private Transform _target;
 
-    public PlayerBattleState(PlayerController playerController, Transform target = null) : base(playerController) {
+    public EnemyBattleState(EnemyController enemyController, Transform target = null) : base(enemyController) {
       _target = target;
     }
 
@@ -18,17 +18,13 @@ namespace Assets.Scripts.Character.Player.States
       }
 
       EventBus<EventStructs.EnemyDetected>.Raise(new EventStructs.EnemyDetected {
-        TransformID = PlayerController.transform.GetInstanceID(),
+        TransformID = EnemyController.transform.GetInstanceID(),
         Target = _target
       });
     }
 
     public override void Update() {
-      CharacterAnimationHandler.MovementValue2D(
-        RigidbodyMovementService.GetDirection2D().x,
-        RigidbodyMovementService.GetDirection2D().y);
-
-      if (RigidbodyMovementService.GetNormalizedSpeed() < 0.1f) {
+      /*if (RigidbodyMovementService.GetNormalizedSpeed() < 0.1f) {
         EventBus<EventStructs.CharacterBattleMovementStopped>.Raise(new EventStructs.CharacterBattleMovementStopped {
           TransformID = PlayerController.transform.GetInstanceID(),
           Stopped = true
@@ -39,28 +35,26 @@ namespace Assets.Scripts.Character.Player.States
           TransformID = PlayerController.transform.GetInstanceID(),
           Stopped = false
         });
-      }
+      }*/
     }
 
     public override void FixedUpdate() {
-      RigidbodyMovementService.Move(InputService.GeMovementVector());
-
       if (CharacterEnemyDetection.GetNearestEnemy() == null) {
-        FiniteStateMachine.ChangeState(new PlayerMovementState(PlayerController));
+        FiniteStateMachine.ChangeState(new EnemyMovementState(EnemyController));
       }
       else {
-        RigidbodyMovementService.LookAt(_target);
+        //RigidbodyMovementService.LookAt(_target);
       }
     }
 
     public override void Exit() {
       EventBus<EventStructs.EnemyDetected>.Raise(new EventStructs.EnemyDetected {
-        TransformID = PlayerController.transform.GetInstanceID(),
+        TransformID = EnemyController.transform.GetInstanceID(),
         Target = null
       });
 
       EventBus<EventStructs.CharacterBattleMovementStopped>.Raise(new EventStructs.CharacterBattleMovementStopped {
-        TransformID = PlayerController.transform.GetInstanceID(),
+        TransformID = EnemyController.transform.GetInstanceID(),
         Stopped = false
       });
     }

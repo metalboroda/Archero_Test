@@ -10,7 +10,7 @@ namespace Assets.Scripts.Character.Player.States
     protected PlayerController PlayerController;
     protected PlayerMovementHandler PlayerMovementHandler;
     protected CharacterEnemyDetection CharacterEnemyDetection;
-    protected PlayerWeaponHandler PlayerWeaponHandler;
+    protected CharacterWeaponHandler CharacterWeaponHandler;
     protected CharacterAnimationHandler CharacterAnimationHandler;
 
     protected FiniteStateMachine FiniteStateMachine;
@@ -21,7 +21,7 @@ namespace Assets.Scripts.Character.Player.States
       PlayerController = playerController;
       PlayerMovementHandler = PlayerController.PlayerMovementHandler;
       CharacterEnemyDetection = PlayerController.CharacterEnemyDetection;
-      PlayerWeaponHandler = PlayerController.PlayerWeaponHandler;
+      CharacterWeaponHandler = PlayerController.CharacterWeaponHandler;
       CharacterAnimationHandler = PlayerController.CharacterAnimationHandler;
 
       FiniteStateMachine = PlayerController.FiniteStateMachine;

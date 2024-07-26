@@ -9,7 +9,7 @@ namespace Assets.Scripts.Character.Player.States
 
     public override void Enter() {
       // Temporary
-      if (PlayerWeaponHandler == null || PlayerWeaponHandler.HasWeapon() == false) {
+      if (CharacterWeaponHandler == null || CharacterWeaponHandler.HasWeapon() == false) {
         CharacterAnimationHandler.MovementAnimation2D();
       }
     }

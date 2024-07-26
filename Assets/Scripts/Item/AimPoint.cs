@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Item
 {
-  public class ShootingPoint : MonoBehaviour
+  public class AimPoint : MonoBehaviour
   {
   }
 }

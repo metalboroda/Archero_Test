@@ -1,17 +1,14 @@
-using Assets.__Game.Resources.Scripts.StateMachine;
-using Assets.Scripts.Character.Player.States;
+using Assets.Scripts.Character.Enemy.States;
 
-namespace Assets.Scripts.Character.Player
+namespace Assets.Scripts.Character.Enemy
 {
-  public class PlayerController : CharacterControllerBase
+  public class EnemyController : CharacterControllerBase
   {
-    public PlayerMovementHandler PlayerMovementHandler { get; private set; }
     public CharacterEnemyDetection CharacterEnemyDetection { get; private set; }
     public CharacterWeaponHandler CharacterWeaponHandler { get; private set; }
     public CharacterAnimationHandler CharacterAnimationHandler { get; private set; }
 
     protected override void Awake() {
-      PlayerMovementHandler = GetComponent<PlayerMovementHandler>();
       CharacterEnemyDetection = GetComponent<CharacterEnemyDetection>();
       CharacterWeaponHandler = GetComponent<CharacterWeaponHandler>();
       CharacterAnimationHandler = GetComponent<CharacterAnimationHandler>();
@@ -20,7 +17,7 @@ namespace Assets.Scripts.Character.Player
     }
 
     private void Start() {
-      FiniteStateMachine.Init(new PlayerMovementState(this));
+      FiniteStateMachine.Init(new EnemyMovementState(this));
     }
 
     protected override void Update() {

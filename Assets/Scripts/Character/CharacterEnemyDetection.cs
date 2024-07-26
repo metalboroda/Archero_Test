@@ -27,7 +27,7 @@ namespace Assets.Scripts.Character
         Vector3 directionToEnemy = _hitColliders[i].transform.position - transform.position;
 
         if (Physics.Raycast(detectionPoint.position, directionToEnemy, out RaycastHit hit, detectionRadius, enemyLayer)) {
-          ShootingPoint shootingPoint = hit.transform.GetComponentInChildren<ShootingPoint>();
+          AimPoint shootingPoint = hit.transform.GetComponentInChildren<AimPoint>();
 
           if (shootingPoint != null) {
             float distanceToEnemy = directionToEnemy.magnitude;
