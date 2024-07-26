@@ -8,12 +8,10 @@ namespace Assets.Scripts.WeaponSystem
   {
     private float _damage;
     private float _speed;
+    private Vector3 _direction;
+    private Quaternion _rotation;
 
     private Rigidbody _rigidbody;
-
-    private void Awake() {
-      _rigidbody = GetComponent<Rigidbody>();
-    }
 
     private void OnTriggerEnter(Collider other) {
       if (other.TryGetComponent(out IDamageable damageable)) {
@@ -23,15 +21,21 @@ namespace Assets.Scripts.WeaponSystem
       LeanPool.Despawn(this);
     }
 
-    public void SpawnInit(float damage, float speed) {
+    public void SpawnInit(float damage, float speed,
+      Vector3 direction) {
       _damage = damage;
       _speed = speed;
+      _direction = direction;
+
+      _rigidbody.velocity = _direction * _speed;
+
+      if (_rigidbody != null) {
+        _rigidbody.velocity = _direction * _speed;
+      }
     }
 
     public void OnSpawn() {
-      if (_rigidbody != null) {
-        _rigidbody.AddForce(transform.forward * _speed, ForceMode.Impulse);
-      }
+      _rigidbody = GetComponent<Rigidbody>();
     }
 
     public void OnDespawn() {

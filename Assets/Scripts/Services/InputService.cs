@@ -5,22 +5,22 @@ namespace Assets.Scripts.Services
 {
   public class InputService
   {
-    private PlayerInputActions _playerInputActions;
+    public PlayerInputActions PlayerInputActions { get; private set; }  
 
     public InputService() {
-      _playerInputActions = new PlayerInputActions();
+      PlayerInputActions = new PlayerInputActions();
     }
 
     public void EnableMovementMap() {
-      _playerInputActions.Movement.Enable();
+      PlayerInputActions.Movement.Enable();
     }
 
     public void DisableMovementMap() {
-      _playerInputActions.Movement.Disable();
+      PlayerInputActions.Movement.Disable();
     }
 
     public Vector2 GeMovementVector() {
-      return _playerInputActions.Movement.Movement.ReadValue<Vector2>().normalized;
+      return PlayerInputActions.Movement.Movement.ReadValue<Vector2>().normalized;
     }
   }
 }

@@ -14,9 +14,11 @@ namespace Assets.Scripts.WeaponSystem
 
     public override void Attack(Transform spawnPoint) {
       ProjectileHandler spawnedProjectileHandler = LeanPool.Spawn(
-        ProjectilePrefab, spawnPoint.position, spawnPoint.rotation).GetComponent<ProjectileHandler>();
+        ProjectilePrefab, spawnPoint.position, Quaternion.identity).GetComponent<ProjectileHandler>();
 
-      spawnedProjectileHandler.SpawnInit(Damage, ProjectileSpeed);
+      Vector3 direction = spawnPoint.forward;
+
+      spawnedProjectileHandler.SpawnInit(Damage, ProjectileSpeed, direction);
     }
   }
 }
