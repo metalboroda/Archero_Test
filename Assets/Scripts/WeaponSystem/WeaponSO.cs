@@ -29,6 +29,6 @@ namespace Assets.Scripts.WeaponSystem
       return currentWeaponHandler;
     }
 
-    public abstract void Attack(Transform spawnPoint, Vector3 direction, Quaternion rotation);
+    public abstract void Attack(Transform spawnPoint);
   }
 }

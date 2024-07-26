@@ -9,7 +9,6 @@ namespace Assets.Scripts.WeaponSystem
     private float _damage;
     private float _speed;
     private Vector3 _direction;
-    private Quaternion _rotation;
 
     private Rigidbody _rigidbody;
 
@@ -25,25 +24,19 @@ namespace Assets.Scripts.WeaponSystem
       LeanPool.Despawn(this);
     }
 
-    public void SpawnInit(float damage, float speed, Vector3 localDirection, Quaternion localRotation) {
+    public void SpawnInit(float damage, float speed, Vector3 direction) {
       _damage = damage;
       _speed = speed;
-      _direction = transform.TransformDirection(localDirection);
-      _rotation = (transform.rotation * localRotation).normalized;
+      _direction = direction;
 
       if (_rigidbody != null) {
         _rigidbody.velocity = Vector3.zero;
         _rigidbody.angularVelocity = Vector3.zero;
-        _rigidbody.rotation = _rotation.normalized;
-        _rigidbody.velocity = _direction * _speed;
+        _rigidbody.AddForce(_direction * _speed, ForceMode.Impulse);
       }
     }
 
     public void OnSpawn() {
-      if (_rigidbody != null) {
-        _rigidbody.rotation = _rotation.normalized;
-        _rigidbody.velocity = _direction * _speed;
-      }
     }
 
     public void OnDespawn() {

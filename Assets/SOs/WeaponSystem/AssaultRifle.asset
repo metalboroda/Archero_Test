@@ -18,4 +18,4 @@ MonoBehaviour:
   <FireRate>k__BackingField: 1
   <MovementAnimation>k__BackingField: AssaultRifleMovement2D
   <ProjectilePrefab>k__BackingField: {fileID: 2285816256493072417, guid: 387fa6d60d222904aa1c5557cacefb2b, type: 3}
-  <ProjectileSpeed>k__BackingField: 25
+  <ProjectileSpeed>k__BackingField: 50

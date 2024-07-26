@@ -45,11 +45,8 @@ namespace Assets.Scripts.Character.Player
 
     public void Attack() {
       if (_currentWeapon != null && _currentWeaponHandler != null) {
-        Transform shootingPoint = _currentWeaponHandler.ShootingPoint;
-        Vector3 localDirection = shootingPoint.localPosition.normalized;
-        Quaternion localRotation = shootingPoint.localRotation.normalized;
 
-        _currentWeapon.Attack(shootingPoint, localDirection, localRotation);
+        _currentWeapon.Attack(_currentWeaponHandler.ShootingPoint);
       }
     }
 
