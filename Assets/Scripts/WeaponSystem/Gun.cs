@@ -12,13 +12,11 @@ namespace Assets.Scripts.WeaponSystem
     [field: Space]
     [field: SerializeField] public float ProjectileSpeed { get; private set; }
 
-    public override void Attack(Transform spawnPoint) {
+    public override void Attack(Transform spawnPoint, Vector3 localDirection, Quaternion localRotation) {
       ProjectileHandler spawnedProjectileHandler = LeanPool.Spawn(
-        ProjectilePrefab, spawnPoint.position, Quaternion.identity).GetComponent<ProjectileHandler>();
+        ProjectilePrefab, spawnPoint.position, spawnPoint.rotation).GetComponent<ProjectileHandler>();
 
-      Vector3 direction = spawnPoint.forward;
-
-      spawnedProjectileHandler.SpawnInit(Damage, ProjectileSpeed, direction);
+      spawnedProjectileHandler.SpawnInit(Damage, ProjectileSpeed, localDirection, localRotation);
     }
   }
 }

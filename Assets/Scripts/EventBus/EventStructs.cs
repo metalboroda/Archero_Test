@@ -20,6 +20,14 @@ namespace __Game.Resources.Scripts.EventBus
     }
     #endregion
 
+    #region Player
+    public struct PlayerBattleMovementStopped : IEvent
+    {
+      public int TransformID;
+      public bool Stopped;
+    }
+    #endregion
+
     #region Enemy Detection
     public struct EnemyDetected : IEvent
     {

@@ -1,8 +1,8 @@
-using UnityEngine;
 using __Game.Resources.Scripts.EventBus;
 using Assets.Scripts.Services;
 using Assets.Scripts.WeaponSystem;
 using System.Collections;
+using UnityEngine;
 
 namespace Assets.Scripts.Character.Player
 {
@@ -17,6 +17,8 @@ namespace Assets.Scripts.Character.Player
     private InputService _inputService;
     private Coroutine _shootingCoroutine;
 
+    private EventBinding<EventStructs.PlayerBattleMovementStopped> _playerBattleMovementStopped;
+
     private void Awake() {
       _inputService = new InputService();
 
@@ -26,35 +28,11 @@ namespace Assets.Scripts.Character.Player
     }
 
     private void OnEnable() {
-      _inputService.PlayerInputActions.Movement.Shoot.started += StartShooting;
-      _inputService.PlayerInputActions.Movement.Shoot.canceled += CancelShooting;
+      _playerBattleMovementStopped = new EventBinding<EventStructs.PlayerBattleMovementStopped>(OnPlayerStopped);
     }
 
     private void OnDisable() {
-      _inputService.PlayerInputActions.Movement.Shoot.started -= StartShooting;
-      _inputService.PlayerInputActions.Movement.Shoot.canceled -= CancelShooting;
-    }
-
-    private void StartShooting(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
-      if (_shootingCoroutine == null) {
-        _shootingCoroutine = StartCoroutine(ShootCoroutine());
-      }
-    }
-
-    private void CancelShooting(UnityEngine.InputSystem.InputAction.CallbackContext obj) {
-      if (_shootingCoroutine != null) {
-        StopCoroutine(_shootingCoroutine);
-
-        _shootingCoroutine = null;
-      }
-    }
-
-    private IEnumerator ShootCoroutine() {
-      while (true) {
-        Attack();
-
-        yield return new WaitForSeconds(_currentWeapon.FireRate);
-      }
+      _playerBattleMovementStopped.Remove(OnPlayerStopped);
     }
 
     private void Start() {
@@ -67,7 +45,11 @@ namespace Assets.Scripts.Character.Player
 
     public void Attack() {
       if (_currentWeapon != null && _currentWeaponHandler != null) {
-        _currentWeapon.Attack(_currentWeaponHandler.ShootingPoint);
+        Transform shootingPoint = _currentWeaponHandler.ShootingPoint;
+        Vector3 localDirection = shootingPoint.localPosition.normalized;
+        Quaternion localRotation = shootingPoint.localRotation.normalized;
+
+        _currentWeapon.Attack(shootingPoint, localDirection, localRotation);
       }
     }
 
@@ -89,6 +71,37 @@ namespace Assets.Scripts.Character.Player
         WeaponHandler = _currentWeaponHandler,
         LeftHandPoint = _currentWeaponHandler.LeftHandPoint
       });
+    }
+
+    private void OnPlayerStopped(EventStructs.PlayerBattleMovementStopped playerBattleMovementStopped) {
+      if (transform.GetInstanceID() != playerBattleMovementStopped.TransformID) return;
+
+      if (playerBattleMovementStopped.Stopped == true)
+        StartShooting();
+      else
+        CancelShooting();
+    }
+
+    private void StartShooting() {
+      if (_shootingCoroutine == null) {
+        _shootingCoroutine = StartCoroutine(ShootCoroutine());
+      }
+    }
+
+    private void CancelShooting() {
+      if (_shootingCoroutine != null) {
+        StopCoroutine(_shootingCoroutine);
+
+        _shootingCoroutine = null;
+      }
+    }
+
+    private IEnumerator ShootCoroutine() {
+      while (true) {
+        Attack();
+
+        yield return new WaitForSeconds(_currentWeapon.FireRate);
+      }
     }
   }
 }

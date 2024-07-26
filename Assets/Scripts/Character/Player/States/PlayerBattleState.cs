@@ -1,5 +1,4 @@
 using __Game.Resources.Scripts.EventBus;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Assets.Scripts.Character.Player.States
@@ -28,6 +27,19 @@ namespace Assets.Scripts.Character.Player.States
       CharacterAnimationHandler.MovementValue2D(
         RigidbodyMovementService.GetDirection2D().x,
         RigidbodyMovementService.GetDirection2D().y);
+
+      if (RigidbodyMovementService.GetNormalizedSpeed() < 0.1f) {
+        EventBus<EventStructs.PlayerBattleMovementStopped>.Raise(new EventStructs.PlayerBattleMovementStopped {
+          TransformID = PlayerController.transform.GetInstanceID(),
+          Stopped = true
+        });
+      }
+      else if (RigidbodyMovementService.GetNormalizedSpeed() >= 0.1f) {
+        EventBus<EventStructs.PlayerBattleMovementStopped>.Raise(new EventStructs.PlayerBattleMovementStopped {
+          TransformID = PlayerController.transform.GetInstanceID(),
+          Stopped = false
+        });
+      }
     }
 
     public override void FixedUpdate() {
@@ -45,6 +57,11 @@ namespace Assets.Scripts.Character.Player.States
       EventBus<EventStructs.EnemyDetected>.Raise(new EventStructs.EnemyDetected {
         TransformID = PlayerController.transform.GetInstanceID(),
         Target = null
+      });
+
+      EventBus<EventStructs.PlayerBattleMovementStopped>.Raise(new EventStructs.PlayerBattleMovementStopped {
+        TransformID = PlayerController.transform.GetInstanceID(),
+        Stopped = false
       });
     }
   }
