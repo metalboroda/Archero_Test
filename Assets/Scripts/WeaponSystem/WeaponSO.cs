@@ -17,14 +17,18 @@ namespace Assets.Scripts.WeaponSystem
 
     private GameObject _instantiatedWeapon;
 
-    public void Equip(Transform equipPoint) {
+    public WeaponHandler Equip(Transform equipPoint) {
       if (_instantiatedWeapon != null) {
         Destroy(_instantiatedWeapon);
       }
 
       _instantiatedWeapon = Instantiate(Prefab, equipPoint.position, equipPoint.rotation, equipPoint);
 
+      WeaponHandler currentWeaponHandler = _instantiatedWeapon.GetComponent<WeaponHandler>();
+
       OnEquip(equipPoint);
+
+      return currentWeaponHandler;
     }
 
     protected abstract void OnEquip(Transform equipPoint);

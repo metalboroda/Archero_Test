@@ -80,6 +80,7 @@ GameObject:
   - component: {fileID: 6323482512340388990}
   - component: {fileID: 2850078466081626581}
   - component: {fileID: 4952545413362146488}
+  - component: {fileID: 3047712552214461611}
   m_Layer: 0
   m_Name: Player_1
   m_TagString: Untagged
@@ -250,6 +251,19 @@ MonoBehaviour:
   _characterAnimationSO: {fileID: 11400000, guid: 7f8ac3324463c464ab431511a494786d, type: 2}
   crossfadeDuration: 0.2
   dampingTime: 0.1
+--- !u!114 &3047712552214461611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781177172212328454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe2bd09e1f5fbf04d9cd8257eac3d61b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aimWeightDuration: 0.2
 --- !u!1 &5682705815782223040
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,6 +378,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1603073560977826414}
     m_Modifications:
+    - target: {fileID: 4741838606107050539, guid: 4ff98127fff32f449a7735d42ba76d3c, type: 3}
+      propertyPath: solver.IKPositionWeight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4919480971985639496, guid: 4ff98127fff32f449a7735d42ba76d3c, type: 3}
       propertyPath: m_Name
       value: _YBot_Base

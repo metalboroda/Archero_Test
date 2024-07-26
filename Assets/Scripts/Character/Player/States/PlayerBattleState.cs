@@ -1,3 +1,5 @@
+using __Game.Resources.Scripts.EventBus;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Assets.Scripts.Character.Player.States
@@ -15,6 +17,11 @@ namespace Assets.Scripts.Character.Player.States
       if (PlayerWeaponHandler == null || PlayerWeaponHandler.HasWeapon() == false) {
         CharacterAnimationHandler.MovementAnimation2D();
       }
+
+      EventBus<EventStructs.EnemyDetected>.Raise(new EventStructs.EnemyDetected {
+        TransformID = PlayerController.transform.GetInstanceID(),
+        Target = _target
+      });
     }
 
     public override void Update() {
@@ -32,6 +39,13 @@ namespace Assets.Scripts.Character.Player.States
       else {
         RigidbodyMovementService.LookAt(_target);
       }
+    }
+
+    public override void Exit() {
+      EventBus<EventStructs.EnemyDetected>.Raise(new EventStructs.EnemyDetected {
+        TransformID = PlayerController.transform.GetInstanceID(),
+        Target = null
+      });
     }
   }
 }

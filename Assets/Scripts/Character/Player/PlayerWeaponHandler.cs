@@ -1,5 +1,6 @@
 using __Game.Resources.Scripts.EventBus;
 using Assets.Scripts.WeaponSystem;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Assets.Scripts.Character.Player
@@ -39,11 +40,13 @@ namespace Assets.Scripts.Character.Player
       if (newWeapon == null) return;
 
       _currentWeapon = newWeapon;
-      _currentWeapon.Equip(_weaponEquipPoint.transform);
+      WeaponHandler currentWeaponHandler = _currentWeapon.Equip(_weaponEquipPoint.transform);
 
       EventBus<EventStructs.WeaponEquipped>.Raise(new EventStructs.WeaponEquipped {
         TransformID = transform.GetInstanceID(),
-        AnimationName = _currentWeapon.MovementAnimation
+        AnimationName = _currentWeapon.MovementAnimation,
+        WeaponHandler = currentWeaponHandler,
+        LeftHandPoint = currentWeaponHandler.LeftHandPoint
       });
     }
   }
