@@ -8,7 +8,10 @@ namespace Assets.Scripts.Character.Player.States
     public PlayerMovementState(PlayerController playerController) : base(playerController) { }
 
     public override void Enter() {
-      CharacterAnimationHandler.MovementAnimation2D();
+      // Temporary
+      if (PlayerWeaponHandler == null || PlayerWeaponHandler.HasWeapon() == false) {
+        CharacterAnimationHandler.MovementAnimation2D();
+      }
     }
 
     public override void Update() {

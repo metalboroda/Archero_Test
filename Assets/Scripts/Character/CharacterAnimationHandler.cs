@@ -1,3 +1,4 @@
+using __Game.Resources.Scripts.EventBus;
 using Assets.Scripts.Services.Character;
 using Assets.Scripts.SOs.Character;
 using UnityEngine;
@@ -15,11 +16,21 @@ namespace Assets.Scripts.Character
 
     private AnimationService _animationService;
 
+    private EventBinding<EventStructs.WeaponEquipped> _weaponEquippedEvent;
+
     private void Awake() {
       _animator = GetComponent<Animator>();
 
       _animationService = new AnimationService(crossfadeDuration, dampingTime,
         _animator);
+    }
+
+    private void OnEnable() {
+      _weaponEquippedEvent = new EventBinding<EventStructs.WeaponEquipped>(OnWeaponEquipped);
+    }
+
+    private void OnDisable() {
+      _weaponEquippedEvent.Remove(OnWeaponEquipped);
     }
 
     public void MovementAnimation() {
@@ -37,6 +48,17 @@ namespace Assets.Scripts.Character
     public void MovementValue2D(float valueX, float valueY) {
       _animationService.SetFloat(_characterAnimationSO.MovementValueX, valueX);
       _animationService.SetFloat(_characterAnimationSO.MovementValueY, valueY);
+    }
+
+    private void OnWeaponEquipped(EventStructs.WeaponEquipped weaponEquipped) {
+      if (transform.GetInstanceID() != weaponEquipped.TransformID) return;
+
+      if (string.IsNullOrEmpty(weaponEquipped.AnimationName) == true) {
+        MovementAnimation2D();
+      }
+      else {
+        _animationService.Crossfade(weaponEquipped.AnimationName);
+      }
     }
   }
 }

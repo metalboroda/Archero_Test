@@ -4,7 +4,7 @@ namespace __Game.Resources.Scripts.EventBus
 {
   public class EventStructs
   {
-    #region FiniteStateMachine
+    #region FSM
     public struct StateChanged : IEvent
     {
       public State State;
@@ -15,6 +15,14 @@ namespace __Game.Resources.Scripts.EventBus
     public struct ComponentEvent<T> : IEvent
     {
       public T Data { get; set; }
+    }
+    #endregion
+
+    #region Weapon System
+    public struct WeaponEquipped : IEvent
+    {
+      public int TransformID;
+      public string AnimationName;
     }
     #endregion
   }
