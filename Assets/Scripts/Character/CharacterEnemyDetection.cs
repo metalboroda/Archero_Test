@@ -7,6 +7,7 @@ namespace Assets.Scripts.Character
   {
     [SerializeField] private float detectionRadius = 10f;
     [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private LayerMask obstacleLayer;
     [Space]
     [SerializeField] private int maxEnemies = 10;
     [Space]
@@ -25,17 +26,14 @@ namespace Assets.Scripts.Character
 
       for (int i = 0; i < numColliders; i++) {
         Vector3 directionToEnemy = _hitColliders[i].transform.position - transform.position;
+        float distanceToEnemy = directionToEnemy.magnitude;
 
-        if (Physics.Raycast(detectionPoint.position, directionToEnemy, out RaycastHit hit, detectionRadius, enemyLayer)) {
-          AimPoint shootingPoint = hit.transform.GetComponentInChildren<AimPoint>();
+        if (Physics.Raycast(detectionPoint.position, directionToEnemy, distanceToEnemy, obstacleLayer) == false) {
+          AimPoint shootingPoint = _hitColliders[i].transform.GetComponentInChildren<AimPoint>();
 
-          if (shootingPoint != null) {
-            float distanceToEnemy = directionToEnemy.magnitude;
-
-            if (distanceToEnemy < nearestDistance) {
-              nearestDistance = distanceToEnemy;
-              nearestEnemyTransform = shootingPoint.transform;
-            }
+          if (shootingPoint != null && distanceToEnemy < nearestDistance) {
+            nearestDistance = distanceToEnemy;
+            nearestEnemyTransform = shootingPoint.transform;
           }
         }
       }
