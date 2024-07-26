@@ -19,7 +19,7 @@ namespace Assets.Scripts.Character.Player
 
     private InputService _inputService;
 
-    private EventBinding<EventStructs.PlayerBattleMovementStopped> _playerBattleMovementStopped;
+    private EventBinding<EventStructs.CharacterBattleMovementStopped> _characterBattleMovementStopped;
 
 
     private void Awake() {
@@ -31,11 +31,11 @@ namespace Assets.Scripts.Character.Player
     }
 
     private void OnEnable() {
-      _playerBattleMovementStopped = new EventBinding<EventStructs.PlayerBattleMovementStopped>(OnPlayerStopped);
+      _characterBattleMovementStopped = new EventBinding<EventStructs.CharacterBattleMovementStopped>(OnPlayerStopped);
     }
 
     private void OnDisable() {
-      _playerBattleMovementStopped.Remove(OnPlayerStopped);
+      _characterBattleMovementStopped.Remove(OnPlayerStopped);
     }
 
     private void Start() {
@@ -73,7 +73,7 @@ namespace Assets.Scripts.Character.Player
       });
     }
 
-    private void OnPlayerStopped(EventStructs.PlayerBattleMovementStopped playerBattleMovementStopped) {
+    private void OnPlayerStopped(EventStructs.CharacterBattleMovementStopped playerBattleMovementStopped) {
       if (transform.GetInstanceID() != playerBattleMovementStopped.TransformID) return;
 
       if (playerBattleMovementStopped.Stopped == true)

@@ -29,13 +29,13 @@ namespace Assets.Scripts.Character.Player.States
         RigidbodyMovementService.GetDirection2D().y);
 
       if (RigidbodyMovementService.GetNormalizedSpeed() < 0.1f) {
-        EventBus<EventStructs.PlayerBattleMovementStopped>.Raise(new EventStructs.PlayerBattleMovementStopped {
+        EventBus<EventStructs.CharacterBattleMovementStopped>.Raise(new EventStructs.CharacterBattleMovementStopped {
           TransformID = PlayerController.transform.GetInstanceID(),
           Stopped = true
         });
       }
       else if (RigidbodyMovementService.GetNormalizedSpeed() >= 0.1f) {
-        EventBus<EventStructs.PlayerBattleMovementStopped>.Raise(new EventStructs.PlayerBattleMovementStopped {
+        EventBus<EventStructs.CharacterBattleMovementStopped>.Raise(new EventStructs.CharacterBattleMovementStopped {
           TransformID = PlayerController.transform.GetInstanceID(),
           Stopped = false
         });
@@ -59,7 +59,7 @@ namespace Assets.Scripts.Character.Player.States
         Target = null
       });
 
-      EventBus<EventStructs.PlayerBattleMovementStopped>.Raise(new EventStructs.PlayerBattleMovementStopped {
+      EventBus<EventStructs.CharacterBattleMovementStopped>.Raise(new EventStructs.CharacterBattleMovementStopped {
         TransformID = PlayerController.transform.GetInstanceID(),
         Stopped = false
       });

@@ -20,8 +20,8 @@ namespace __Game.Resources.Scripts.EventBus
     }
     #endregion
 
-    #region Player
-    public struct PlayerBattleMovementStopped : IEvent
+    #region Character
+    public struct CharacterBattleMovementStopped : IEvent
     {
       public int TransformID;
       public bool Stopped;
