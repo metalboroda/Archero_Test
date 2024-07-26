@@ -13,7 +13,7 @@ namespace Assets.Scripts.Character.Enemy.States
     protected CharacterAnimationHandler CharacterAnimationHandler;
 
     protected FiniteStateMachine FiniteStateMachine;
-    protected MovementService MovementService;
+    protected AgentMovementService AgentMovementService;
 
     public EnemyBaseState(EnemyController enemyController) {
       EnemyController = enemyController;
@@ -23,7 +23,7 @@ namespace Assets.Scripts.Character.Enemy.States
       CharacterAnimationHandler = EnemyController.CharacterAnimationHandler;
 
       FiniteStateMachine = EnemyController.FiniteStateMachine;
-      MovementService = EnemyMovementHandler.MovementService;
+      AgentMovementService = EnemyMovementHandler.MovementService;
     }
   }
 }

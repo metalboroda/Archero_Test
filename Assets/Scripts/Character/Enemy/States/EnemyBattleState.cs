@@ -43,7 +43,7 @@ namespace Assets.Scripts.Character.Enemy.States
         FiniteStateMachine.ChangeState(new EnemyMovementState(EnemyController));
       }
       else {
-        MovementService.LookAt(_target);
+        AgentMovementService.LookAt(_target);
       }
     }
 
