@@ -1,10 +1,20 @@
+using __Game.Resources.Scripts.EventBus;
+using Assets.Scripts.Character.Enemy.States;
 using Assets.Scripts.Services.Character;
+using UnityEngine;
 
 namespace Assets.Scripts.Character.Enemy
 {
   public class EnemyHandler : CharacterHandlerBase
   {
+    private CapsuleCollider _capsuleCollider;
+
+    private EnemyController _enemyController;
+
     private void Awake() {
+      _capsuleCollider = GetComponent<CapsuleCollider>();
+      _enemyController = GetComponent<EnemyController>();
+
       HealthService = new HealthService(MaxHealth);
     }
 
@@ -26,7 +36,15 @@ namespace Assets.Scripts.Character.Enemy
     }
 
     protected override void OnDeath() {
-      Destroy(gameObject);
+      _enemyController.FiniteStateMachine.ChangeState(new EnemyDeathState(_enemyController));
+
+      _capsuleCollider.enabled = false;
+
+      EventBus<EventStructs.CharacterDead>.Raise(new EventStructs.CharacterDead {
+        TransformID = transform.GetInstanceID()
+      });
+
+      Destroy(gameObject, 10);
     }
   }
 }

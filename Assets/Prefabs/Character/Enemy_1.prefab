@@ -266,8 +266,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.25
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 5
+  m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 500
   m_StoppingDistance: 0.1
@@ -369,9 +369,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a224b6c9ac1db44cb1ff134d1fd6fc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterAnimationSO: {fileID: 11400000, guid: 7f8ac3324463c464ab431511a494786d, type: 2}
+  characterAnimationSO: {fileID: 11400000, guid: 7f8ac3324463c464ab431511a494786d, type: 2}
   crossfadeDuration: 0.2
   dampingTime: 0.15
+  undergroundDelay: 7.5
+  undergroundDuration: 2
 --- !u!114 &3158256629812493828
 MonoBehaviour:
   m_ObjectHideFlags: 0

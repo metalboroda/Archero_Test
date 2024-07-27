@@ -15,6 +15,7 @@ namespace Assets.Scripts.Character
 
     private EventBinding<EventStructs.WeaponEquipped> _weaponEquippedEvent;
     private EventBinding<EventStructs.EnemyDetected> _enemyDetectedEvent;
+    private EventBinding<EventStructs.CharacterDead> _characterDeadEvent;
 
     private void Awake() {
       _aimIK = GetComponentInChildren<AimIK>();
@@ -27,12 +28,14 @@ namespace Assets.Scripts.Character
       _weaponEquippedEvent = new EventBinding<EventStructs.WeaponEquipped>(SetWeaponForAimIK);
       _weaponEquippedEvent = new EventBinding<EventStructs.WeaponEquipped>(AttachLeftHand);
       _enemyDetectedEvent = new EventBinding<EventStructs.EnemyDetected>(TargetForRightHand);
+      _characterDeadEvent = new EventBinding<EventStructs.CharacterDead>(OnDeath);
     }
 
     private void OnDestroy() {
       _weaponEquippedEvent.Remove(SetWeaponForAimIK);
       _weaponEquippedEvent.Remove(AttachLeftHand);
       _enemyDetectedEvent.Remove(TargetForRightHand);
+      _characterDeadEvent.Remove(OnDeath);
     }
 
     private void Start() {
@@ -97,6 +100,13 @@ namespace Assets.Scripts.Character
       if (this != null) {
         _aimIK.solver.IKPositionWeight = value;
       }
+    }
+
+    private void OnDeath(EventStructs.CharacterDead characterDead) {
+      if (transform.GetInstanceID() != characterDead.TransformID) return;
+
+      _aimIK.enabled = false;
+      _leftLimb.enabled = false;
     }
   }
 }

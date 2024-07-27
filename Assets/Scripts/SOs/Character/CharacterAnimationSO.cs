@@ -8,10 +8,19 @@ namespace Assets.Scripts.SOs.Character
     [field: Header("Animation Names")]
     [field: SerializeField] public string MovementAnimation { get; private set; }
     [field: SerializeField] public string MovementAnimation2D { get; private set; }
+    [SerializeField] private AnimationClip[] deathAnimations;
 
     [field: Header("Blend Values")]
     [field: SerializeField] public string MovementValue { get; private set; }
     [field: SerializeField] public string MovementValueX { get; private set; }
     [field: SerializeField] public string MovementValueY { get; private set; }
+
+    public string GetRandomDeathAnimation() {
+      return GetRandomAnimationName(deathAnimations);
+    }
+
+    private string GetRandomAnimationName(AnimationClip[] animationClips) {
+      return animationClips[Random.Range(0, animationClips.Length)].name;
+    }
   }
 }

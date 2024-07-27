@@ -1,16 +1,20 @@
 using __Game.Resources.Scripts.EventBus;
 using Assets.Scripts.Services.Character;
 using Assets.Scripts.SOs.Character;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Assets.Scripts.Character
 {
   public class CharacterAnimationHandler : MonoBehaviour
   {
-    [SerializeField] private CharacterAnimationSO _characterAnimationSO;
+    [SerializeField] private CharacterAnimationSO characterAnimationSO;
     [Header("Settings")]
     [SerializeField] private float crossfadeDuration = 0.2f;
     [SerializeField] private float dampingTime = 0.15f;
+    [Header("Underground")]
+    [SerializeField] private float undergroundDelay = 7.5f;
+    [SerializeField] private float undergroundDuration = 2f;
 
     private Animator _animator;
 
@@ -34,20 +38,27 @@ namespace Assets.Scripts.Character
     }
 
     public void MovementAnimation() {
-      _animationService.Crossfade(_characterAnimationSO.MovementAnimation);
+      _animationService.Crossfade(characterAnimationSO.MovementAnimation);
     }
 
     public void MovementAnimation2D() {
-      _animationService.Crossfade(_characterAnimationSO.MovementAnimation2D);
+      _animationService.Crossfade(characterAnimationSO.MovementAnimation2D);
     }
 
     public void MovementValue(float value) {
-      _animationService.SetFloat(_characterAnimationSO.MovementValue, value);
+      _animationService.SetFloat(characterAnimationSO.MovementValue, value);
     }
 
     public void MovementValue2D(float valueX, float valueY) {
-      _animationService.SetFloat(_characterAnimationSO.MovementValueX, valueX);
-      _animationService.SetFloat(_characterAnimationSO.MovementValueY, valueY);
+      _animationService.SetFloat(characterAnimationSO.MovementValueX, valueX);
+      _animationService.SetFloat(characterAnimationSO.MovementValueY, valueY);
+    }
+
+    public void DeathAnimation() {
+      _animationService.Crossfade(characterAnimationSO.GetRandomDeathAnimation());
+
+      transform.DOMoveY(-3, undergroundDuration)
+        .SetDelay(undergroundDelay);
     }
 
     private void OnWeaponEquipped(EventStructs.WeaponEquipped weaponEquipped) {

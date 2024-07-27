@@ -14,6 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <MovementAnimation>k__BackingField: Movement
   <MovementAnimation2D>k__BackingField: Movement2D
+  deathAnimations:
+  - {fileID: -203655887218126122, guid: b9315c8e9366cc84a89d876f55b31c4c, type: 3}
+  - {fileID: -203655887218126122, guid: 32a5c9a4c8ea9d94a8fcd131917f57c4, type: 3}
+  - {fileID: -203655887218126122, guid: dc2cc01fd57371a4780f414f8691402c, type: 3}
+  - {fileID: -203655887218126122, guid: 1fcd357cb2ae4ba43a895b2e72956f47, type: 3}
+  - {fileID: -203655887218126122, guid: 6210e6d69852dc546a4d6349adebf904, type: 3}
+  - {fileID: -203655887218126122, guid: ebfae1b09b346de47b7c3a61707c9383, type: 3}
   <MovementValue>k__BackingField: MovementValue
   <MovementValueX>k__BackingField: MovementValueX
   <MovementValueY>k__BackingField: MovementValueY

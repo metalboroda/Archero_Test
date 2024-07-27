@@ -1,9 +1,14 @@
 using Assets.Scripts.Services.Character;
+using UnityEngine;
 
 namespace Assets.Scripts.Character.Player
 {
   public class PlayerHandler : CharacterHandlerBase
   {
+    [Header("")]
+    [SerializeField] private CapsuleCollider capsuleCollider;
+    [SerializeField] private CapsuleCollider capsuleTrigger;
+
     private void Awake() {
       HealthService = new HealthService(MaxHealth);
     }
@@ -26,7 +31,10 @@ namespace Assets.Scripts.Character.Player
     }
 
     protected override void OnDeath() {
-      Destroy(gameObject);
+      capsuleCollider.enabled = false;
+      capsuleTrigger.enabled = false;
+
+      Destroy(gameObject, 10);
     }
   }
 }

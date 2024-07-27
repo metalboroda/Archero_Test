@@ -26,6 +26,11 @@ namespace __Game.Resources.Scripts.EventBus
       public int TransformID;
       public bool Stopped;
     }
+
+    public struct CharacterDead : IEvent
+    {
+      public int TransformID;
+    }
     #endregion
 
     #region Enemy Detection
