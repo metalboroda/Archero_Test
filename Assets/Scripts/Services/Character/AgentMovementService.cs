@@ -11,24 +11,21 @@ namespace Assets.Scripts.Services.Character
     private NavMeshAgent _navMeshAgent;
     private bool _isPaused;
     private Vector3 _lastMovement;
-    private NavMeshService _navMeshService;
 
-    public AgentMovementService(float rotationSpeed, NavMeshAgent navMeshAgent, float idleDuration, 
-      NavMeshService navMeshService, Vector3 origin) {
+    public AgentMovementService(float rotationSpeed, float idleDuration, NavMeshAgent navMeshAgent) {
       _rotationSpeed = rotationSpeed;
-      _navMeshAgent = navMeshAgent;
       _idleDuration = idleDuration;
-      _navMeshService = navMeshService;
+      _navMeshAgent = navMeshAgent;
     }
 
-    public void MoveWithIdle(Vector3 origin) {
-      StartCoroutine(DoMoveWithIdle(origin));
+    public void MoveWithIdle(Vector3 origin, NavMeshService navMeshService) {
+      StartCoroutine(DoMoveWithIdle(origin, navMeshService));
     }
 
-    private IEnumerator DoMoveWithIdle(Vector3 origin) {
+    private IEnumerator DoMoveWithIdle(Vector3 origin, NavMeshService navMeshService) {
       while (true) {
         if (_isPaused == false) {
-          Vector3 randomPoint = _navMeshService.GetRandomPointOnNavMesh(origin);
+          Vector3 randomPoint = navMeshService.GetRandomPointOnNavMesh(origin);
 
           _navMeshAgent.SetDestination(randomPoint);
 
