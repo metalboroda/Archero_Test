@@ -37,7 +37,7 @@ MonoBehaviour:
         - iColor: 0
           icon: 
       goDatasByInstanceId:
-        keys: b46500009c640000bc65000034faffff2c650000
+        keys: b46500009c640000bc6500009af7ffff2c650000
         values:
         - iColor: 9
           icon: 
