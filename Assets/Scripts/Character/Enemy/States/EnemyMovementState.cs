@@ -33,7 +33,7 @@ namespace Assets.Scripts.Character.Enemy.States
     }
 
     private void PatrollingMovement() {
-      AgentMovementService.StartMoveTo(
+      AgentMovementService.StartMoveTo(false,
         NavMeshService.GetRandomPointOnNavMesh(EnemyController.transform.position, EnemyMovementHandler.PatrollingRadius),
         EnemyMovementHandler.MinPatrollingIdle, EnemyMovementHandler.MaxIdlePatrolling, PatrollingMovement);
     }

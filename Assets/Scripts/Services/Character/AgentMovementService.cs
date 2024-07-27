@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 namespace Assets.Scripts.Services.Character
 {
@@ -11,9 +12,10 @@ namespace Assets.Scripts.Services.Character
     private NavMeshAgent _navMeshAgent;
     private bool _isPaused;
     private Vector3 _lastMovement;
-    private Coroutine _movementCoroutine;
-    private MonoBehaviour _monoBehaviour;
     private float _originalSpeed;
+    private Coroutine _movementCoroutine;
+
+    private MonoBehaviour _monoBehaviour;
 
     public AgentMovementService(float lookRotationSpeed, NavMeshAgent navMeshAgent, MonoBehaviour monoBehaviour) {
       _lookRotationSpeed = lookRotationSpeed;
@@ -23,15 +25,11 @@ namespace Assets.Scripts.Services.Character
     }
 
     public void Move(Vector3 direction) {
-      if (_navMeshAgent.isOnNavMesh) {
-        _navMeshAgent.isStopped = false;
+      Vector3 movement = new Vector3(direction.x, 0, direction.z).normalized * _navMeshAgent.speed;
 
-        Vector3 movement = new Vector3(direction.x, 0, direction.z).normalized * _navMeshAgent.speed;
+      _navMeshAgent.SetDestination(_navMeshAgent.transform.position + movement);
 
-        _navMeshAgent.SetDestination(_navMeshAgent.transform.position + movement);
-
-        _lastMovement = movement;
-      }
+      _lastMovement = movement;
     }
 
     public void LookAt(Transform target) {
@@ -66,25 +64,25 @@ namespace Assets.Scripts.Services.Character
       return new Vector2(rightMovement, forwardMovement);
     }
 
-    public void StartMoveTo(Vector3 targetPosition, float minDelay, float maxDelay, Action onDestinationReached) {
-      if (_movementCoroutine != null) {
-        _monoBehaviour.StopCoroutine(_movementCoroutine);
-      }
-
+    public void StartMoveTo(bool firstDelay, Vector3 targetPosition, float minDelay, float maxDelay, Action onDestinationReached) {
       if (_navMeshAgent.isOnNavMesh == true)
         _navMeshAgent.isStopped = false;
 
-      _movementCoroutine = _monoBehaviour.StartCoroutine(MoveToCoroutine(targetPosition, minDelay, maxDelay, onDestinationReached));
+      _movementCoroutine = _monoBehaviour.StartCoroutine(MoveToCoroutine(firstDelay, targetPosition, minDelay, maxDelay, onDestinationReached));
     }
 
-    private IEnumerator MoveToCoroutine(Vector3 targetPosition, float minDelay, float maxDelay, Action onDestinationReached) {
+    private IEnumerator MoveToCoroutine(bool firstDelay, Vector3 targetPosition, float minDelay, float maxDelay, Action onDestinationReached) {
+
+      if (firstDelay == true)
+        yield return new WaitForSeconds(Random.Range(minDelay, maxDelay));
+
       while (Vector3.Distance(_navMeshAgent.transform.position, targetPosition) > _navMeshAgent.stoppingDistance) {
         Move(targetPosition - _navMeshAgent.transform.position);
 
         yield return null;
       }
 
-      yield return new WaitForSeconds(UnityEngine.Random.Range(minDelay, maxDelay));
+      yield return new WaitForSeconds(Random.Range(minDelay, maxDelay));
 
       onDestinationReached?.Invoke();
     }
@@ -94,8 +92,11 @@ namespace Assets.Scripts.Services.Character
         _monoBehaviour.StopCoroutine(_movementCoroutine);
       }
 
-      if (_navMeshAgent.isOnNavMesh == true)
+      if (_navMeshAgent.isOnNavMesh == true) {
         _navMeshAgent.isStopped = true;
+
+        _navMeshAgent.ResetPath();
+      }
     }
   }
 }

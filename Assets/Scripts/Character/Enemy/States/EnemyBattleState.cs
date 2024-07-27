@@ -70,7 +70,7 @@ namespace Assets.Scripts.Character.Enemy.States
     }
 
     private void BattleMovement() {
-      AgentMovementService.StartMoveTo(
+      AgentMovementService.StartMoveTo(true,
         NavMeshService.GetRandomPointOnNavMesh(_target.position, EnemyMovementHandler.BattleRadius),
         EnemyMovementHandler.MinBattleIdle, EnemyMovementHandler.MaxBattleIdle, BattleMovement);
     }

@@ -316,13 +316,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookRotationSpeed: 5
-  <MinPatrollingIdle>k__BackingField: 2.5
-  <MaxIdlePatrolling>k__BackingField: 5
-  <MinBattleIdle>k__BackingField: 1
-  <MaxBattleIdle>k__BackingField: 2.5
+  <MinPatrollingIdle>k__BackingField: 2
+  <MaxIdlePatrolling>k__BackingField: 4
+  <MinBattleIdle>k__BackingField: 0.75
+  <MaxBattleIdle>k__BackingField: 1.5
   <PatrollingRadius>k__BackingField: 25
-  <BattleRadius>k__BackingField: 8
-  <MinDistance>k__BackingField: 4
+  <BattleRadius>k__BackingField: 6
+  <MinDistance>k__BackingField: 3
 --- !u!114 &9041294448990314968
 MonoBehaviour:
   m_ObjectHideFlags: 0
