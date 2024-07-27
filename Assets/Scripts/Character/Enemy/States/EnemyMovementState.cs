@@ -12,6 +12,7 @@ namespace Assets.Scripts.Character.Enemy.States
         CharacterAnimationHandler.MovementAnimation2D();
       }
 
+      EnemyMovementHandler.ResetNavMeshSettings();
       PatrollingMovement();
     }
 

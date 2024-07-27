@@ -22,6 +22,8 @@ namespace Assets.Scripts.Character.Enemy.States
         Target = _target
       });
 
+      EnemyMovementHandler.NavMeshAgent.angularSpeed = 0;
+
       BattleMovement();
     }
 

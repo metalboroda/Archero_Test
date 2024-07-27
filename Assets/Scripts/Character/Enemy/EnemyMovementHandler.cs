@@ -24,16 +24,26 @@ namespace Assets.Scripts.Character.Enemy
     [field: Space]
     [field: SerializeField] public float MinDistance { get; private set; } = 5f;
 
-    private NavMeshAgent _navMeshAgent;
+    public NavMeshAgent NavMeshAgent { get; private set; }
 
     public AgentMovementService AgentMovementService { get; private set; }
     public NavMeshService NavMeshService { get; private set; }
 
-    private void Awake() {
-      _navMeshAgent = GetComponent<NavMeshAgent>();
+    private float _startAngularSpeed;
 
-      AgentMovementService = new AgentMovementService(lookRotationSpeed, _navMeshAgent, this);
+    private void Awake() {
+      NavMeshAgent = GetComponent<NavMeshAgent>();
+
+      AgentMovementService = new AgentMovementService(lookRotationSpeed, NavMeshAgent, this);
       NavMeshService = new NavMeshService(MinDistance);
+    }
+
+    public void Start() {
+      _startAngularSpeed = NavMeshAgent.angularSpeed;
+    }
+
+    public void ResetNavMeshSettings() {
+      NavMeshAgent.angularSpeed = _startAngularSpeed;
     }
   }
 }
