@@ -1,55 +1,37 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
-using System.Collections;
 
 namespace Assets.Scripts.Services.Character
 {
-  public class AgentMovementService : MonoBehaviour
+  public class AgentMovementService
   {
-    private float _rotationSpeed;
-    private float _idleDuration;
+    private float _lookRotationSpeed;
     private NavMeshAgent _navMeshAgent;
     private bool _isPaused;
     private Vector3 _lastMovement;
+    private Coroutine _movementCoroutine;
+    private MonoBehaviour _monoBehaviour;
+    private float _originalSpeed;
 
-    public AgentMovementService(float rotationSpeed, float idleDuration, NavMeshAgent navMeshAgent) {
-      _rotationSpeed = rotationSpeed;
-      _idleDuration = idleDuration;
+    public AgentMovementService(float lookRotationSpeed, NavMeshAgent navMeshAgent, MonoBehaviour monoBehaviour) {
+      _lookRotationSpeed = lookRotationSpeed;
       _navMeshAgent = navMeshAgent;
-    }
-
-    public void MoveWithIdle(Vector3 origin, NavMeshService navMeshService) {
-      StartCoroutine(DoMoveWithIdle(origin, navMeshService));
-    }
-
-    private IEnumerator DoMoveWithIdle(Vector3 origin, NavMeshService navMeshService) {
-      while (true) {
-        if (_isPaused == false) {
-          Vector3 randomPoint = navMeshService.GetRandomPointOnNavMesh(origin);
-
-          _navMeshAgent.SetDestination(randomPoint);
-
-          while (_navMeshAgent.remainingDistance > _navMeshAgent.stoppingDistance) {
-            yield return null;
-          }
-
-          _isPaused = true;
-
-          yield return new WaitForSeconds(_idleDuration);
-
-          _isPaused = false;
-        }
-
-        yield return null;
-      }
+      _monoBehaviour = monoBehaviour;
+      _originalSpeed = navMeshAgent.speed;
     }
 
     public void Move(Vector3 direction) {
-      Vector3 movement = new Vector3(direction.x, 0, direction.z).normalized * _navMeshAgent.speed;
+      if (_navMeshAgent.isOnNavMesh) {
+        _navMeshAgent.isStopped = false;
 
-      _navMeshAgent.SetDestination(_navMeshAgent.transform.position + movement * Time.deltaTime);
+        Vector3 movement = new Vector3(direction.x, 0, direction.z).normalized * _navMeshAgent.speed;
 
-      _lastMovement = movement;
+        _navMeshAgent.SetDestination(_navMeshAgent.transform.position + movement);
+
+        _lastMovement = movement;
+      }
     }
 
     public void LookAt(Transform target) {
@@ -60,7 +42,7 @@ namespace Assets.Scripts.Services.Character
       if (directionToTarget != Vector3.zero) {
         Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
 
-        _navMeshAgent.transform.rotation = Quaternion.Lerp(_navMeshAgent.transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
+        _navMeshAgent.transform.rotation = Quaternion.Lerp(_navMeshAgent.transform.rotation, targetRotation, _lookRotationSpeed * Time.deltaTime);
       }
     }
 
@@ -82,6 +64,38 @@ namespace Assets.Scripts.Services.Character
       float rightMovement = Vector3.Dot(_lastMovement.normalized, right) * clampedVelocity;
 
       return new Vector2(rightMovement, forwardMovement);
+    }
+
+    public void StartMoveTo(Vector3 targetPosition, float minDelay, float maxDelay, Action onDestinationReached) {
+      if (_movementCoroutine != null) {
+        _monoBehaviour.StopCoroutine(_movementCoroutine);
+      }
+
+      if (_navMeshAgent.isOnNavMesh == true)
+        _navMeshAgent.isStopped = false;
+
+      _movementCoroutine = _monoBehaviour.StartCoroutine(MoveToCoroutine(targetPosition, minDelay, maxDelay, onDestinationReached));
+    }
+
+    private IEnumerator MoveToCoroutine(Vector3 targetPosition, float minDelay, float maxDelay, Action onDestinationReached) {
+      while (Vector3.Distance(_navMeshAgent.transform.position, targetPosition) > _navMeshAgent.stoppingDistance) {
+        Move(targetPosition - _navMeshAgent.transform.position);
+
+        yield return null;
+      }
+
+      yield return new WaitForSeconds(UnityEngine.Random.Range(minDelay, maxDelay));
+
+      onDestinationReached?.Invoke();
+    }
+
+    public void StopMovement() {
+      if (_movementCoroutine != null) {
+        _monoBehaviour.StopCoroutine(_movementCoroutine);
+      }
+
+      if (_navMeshAgent.isOnNavMesh == true)
+        _navMeshAgent.isStopped = true;
     }
   }
 }

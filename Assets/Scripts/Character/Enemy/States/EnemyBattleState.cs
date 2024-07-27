@@ -21,6 +21,8 @@ namespace Assets.Scripts.Character.Enemy.States
         TransformID = EnemyController.transform.GetInstanceID(),
         Target = _target
       });
+
+      BattleMovement();
     }
 
     public override void Update() {
@@ -36,6 +38,10 @@ namespace Assets.Scripts.Character.Enemy.States
           Stopped = false
         });
       }
+
+      CharacterAnimationHandler.MovementValue2D(
+        AgentMovementService.GetDirection2D().x,
+        AgentMovementService.GetDirection2D().y);
     }
 
     public override void FixedUpdate() {
@@ -57,6 +63,14 @@ namespace Assets.Scripts.Character.Enemy.States
         TransformID = EnemyController.transform.GetInstanceID(),
         Stopped = false
       });
+
+      AgentMovementService.StopMovement();
+    }
+
+    private void BattleMovement() {
+      AgentMovementService.StartMoveTo(
+        NavMeshService.GetRandomPointOnNavMesh(_target.position, EnemyMovementHandler.BattleRadius),
+        EnemyMovementHandler.MinBattleIdle, EnemyMovementHandler.MaxBattleIdle, BattleMovement);
     }
   }
 }

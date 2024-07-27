@@ -5,30 +5,28 @@ namespace Assets.Scripts.Services.Character
 {
   public class NavMeshService
   {
-    private float _radius;
     private float _minDistanceFromPrevious;
     private Vector3 _previousPoint;
     private bool _isFirstPoint;
 
-    public NavMeshService(float radius, float minDistanceFromPrevious) {
-      _radius = radius;
+    public NavMeshService(float minDistanceFromPrevious) {
       _minDistanceFromPrevious = minDistanceFromPrevious;
 
       _isFirstPoint = true;
     }
 
-    public Vector3 GetRandomPointOnNavMesh(Vector3 origin) {
+    public Vector3 GetRandomPointOnNavMesh(Vector3 origin, float radius) {
       Vector3 randomPoint;
       float distanceFromPrevious;
       int attempts = 0;
       const int maxAttempts = 30;
 
       do {
-        Vector3 randomDirection = Random.insideUnitSphere * _radius;
+        Vector3 randomDirection = Random.insideUnitSphere * radius;
 
         randomDirection += origin;
 
-        if (NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, _radius, NavMesh.AllAreas)) {
+        if (NavMesh.SamplePosition(randomDirection, out NavMeshHit hit, radius, NavMesh.AllAreas)) {
           randomPoint = hit.position;
         }
         else {
