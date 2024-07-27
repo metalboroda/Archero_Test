@@ -14,6 +14,7 @@ namespace Assets.Scripts.Character.Enemy.States
 
     protected FiniteStateMachine FiniteStateMachine;
     protected AgentMovementService AgentMovementService;
+    protected NavMeshService NavMeshService;
 
     public EnemyBaseState(EnemyController enemyController) {
       EnemyController = enemyController;
@@ -24,6 +25,7 @@ namespace Assets.Scripts.Character.Enemy.States
 
       FiniteStateMachine = EnemyController.FiniteStateMachine;
       AgentMovementService = EnemyMovementHandler.AgentMovementService;
+      NavMeshService = EnemyMovementHandler.NavMeshService;
     }
   }
 }
