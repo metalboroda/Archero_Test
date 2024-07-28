@@ -313,6 +313,7 @@ GameObject:
   - component: {fileID: 3033989557735670769}
   - component: {fileID: 9166025953248542777}
   - component: {fileID: 420540339573094780}
+  - component: {fileID: 4059978323810103281}
   m_Layer: 11
   m_Name: Enemy_Flying_1
   m_TagString: Untagged
@@ -387,8 +388,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 0.375
+  m_Height: 0.375
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &4980792197995078656
@@ -452,7 +453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookRotationSpeed: 5
   <MinPatrollingIdle>k__BackingField: 2
-  <MaxIdlePatrolling>k__BackingField: 4
+  <MaxIdlePatrolling>k__BackingField: 3
   <MinBattleIdle>k__BackingField: 0.75
   <MaxBattleIdle>k__BackingField: 1.5
   <PatrollingRadius>k__BackingField: 25
@@ -494,6 +495,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: a8bb9cdb2eccca749b792ce75be8d3df, type: 2}
   weaponLookAtSpeed: 25
+--- !u!114 &4059978323810103281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8237349318303421967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b86104527b09724b8f386cdc585523d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathParticlesPrefab: {fileID: 1879769179923522, guid: dc3c3e3219cc360429ce2c3324abd008, type: 3}
 --- !u!1 &8630046561169540948
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,7 +567,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3777507325077876758}

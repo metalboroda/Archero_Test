@@ -317,7 +317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookRotationSpeed: 5
   <MinPatrollingIdle>k__BackingField: 2
-  <MaxIdlePatrolling>k__BackingField: 4
+  <MaxIdlePatrolling>k__BackingField: 3
   <MinBattleIdle>k__BackingField: 0.75
   <MaxBattleIdle>k__BackingField: 1.5
   <PatrollingRadius>k__BackingField: 25
@@ -358,6 +358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: a8bb9cdb2eccca749b792ce75be8d3df, type: 2}
+  weaponLookAtSpeed: 25
 --- !u!114 &7956783118224945058
 MonoBehaviour:
   m_ObjectHideFlags: 0

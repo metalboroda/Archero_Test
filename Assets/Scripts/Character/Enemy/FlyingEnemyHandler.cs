@@ -1,4 +1,5 @@
 using __Game.Resources.Scripts.EventBus;
+using Assets.Scripts.Character.Enemy.States;
 using Assets.Scripts.Item;
 using Assets.Scripts.Services.Character;
 
@@ -38,8 +39,6 @@ namespace Assets.Scripts.Character.Enemy
     }
 
     protected override void OnDeath() {
-      //_flyingEnemyController.FiniteStateMachine.ChangeState(new EnemyDeathState(_enemyController));
-
       AimPoint.gameObject.SetActive(false);
 
       EventBus<EventStructs.CharacterDead>.Raise(new EventStructs.CharacterDead {
@@ -50,9 +49,7 @@ namespace Assets.Scripts.Character.Enemy
     }
 
     private void OnPlayerDeath() {
-      //if (_enemyController.FiniteStateMachine.CurrentState is EnemyDeathState) return;
-
-      //_enemyController.FiniteStateMachine.ChangeState(new EnemyVictoryState(_enemyController));
+      _flyingEnemyController.FiniteStateMachine.ChangeState(new FlyingEnemyVictoryState(_flyingEnemyController));
     }
   }
 }
