@@ -1,5 +1,6 @@
 using __Game.Resources.Scripts.EventBus;
 using Assets.Scripts.Character.Enemy.States;
+using Assets.Scripts.Item;
 using Assets.Scripts.Services.Character;
 using UnityEngine;
 
@@ -7,6 +8,9 @@ namespace Assets.Scripts.Character.Enemy
 {
   public class EnemyHandler : CharacterHandlerBase
   {
+    [Header("")]
+    [SerializeField] private AimPoint _aimPoint;
+
     private CapsuleCollider _capsuleCollider;
 
     private EnemyController _enemyController;
@@ -45,6 +49,7 @@ namespace Assets.Scripts.Character.Enemy
       _enemyController.FiniteStateMachine.ChangeState(new EnemyDeathState(_enemyController));
 
       _capsuleCollider.enabled = false;
+      _aimPoint.gameObject.SetActive(false);
 
       EventBus<EventStructs.CharacterDead>.Raise(new EventStructs.CharacterDead {
         TransformID = transform.GetInstanceID()
@@ -54,6 +59,8 @@ namespace Assets.Scripts.Character.Enemy
     }
 
     private void OnPlayerDeath() {
+      if (_enemyController.FiniteStateMachine.CurrentState is EnemyDeathState) return;
+
       _enemyController.FiniteStateMachine.ChangeState(new EnemyVictoryState(_enemyController));
     }
   }

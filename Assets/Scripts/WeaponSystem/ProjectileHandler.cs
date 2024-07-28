@@ -6,6 +6,9 @@ namespace Assets.Scripts.WeaponSystem
 {
   public class ProjectileHandler : MonoBehaviour, IPoolable
   {
+    [Header("VFX")]
+    [SerializeField] private GameObject impactPrefab;
+
     private float _damage;
     private float _speed;
     private Vector3 _direction;
@@ -16,12 +19,23 @@ namespace Assets.Scripts.WeaponSystem
       _rigidbody = GetComponent<Rigidbody>();
     }
 
-    private void OnTriggerEnter(Collider other) {
-      if (other.TryGetComponent(out IDamageable damageable)) {
+    private void Update() {
+      _rigidbody.velocity = _direction * _speed;
+    }
+
+    private void OnCollisionEnter(Collision collision) {
+      if (collision.collider.TryGetComponent(out IDamageable damageable)) {
         damageable.Damage(_damage);
       }
 
-      LeanPool.Despawn(this);
+      ContactPoint contact = collision.contacts[0];
+      Vector3 collisionPoint = contact.point;
+      Vector3 collisionNormal = contact.normal;
+
+      Quaternion collisionRotation = Quaternion.LookRotation(collisionNormal);
+
+      LeanPool.Spawn(impactPrefab, collisionPoint, collisionRotation);
+      LeanPool.Despawn(gameObject, 0.001f);
     }
 
     public void SpawnInit(float damage, float speed, Vector3 direction) {
@@ -32,7 +46,6 @@ namespace Assets.Scripts.WeaponSystem
       if (_rigidbody != null) {
         _rigidbody.velocity = Vector3.zero;
         _rigidbody.angularVelocity = Vector3.zero;
-        _rigidbody.AddForce(_direction * _speed, ForceMode.Impulse);
       }
     }
 
