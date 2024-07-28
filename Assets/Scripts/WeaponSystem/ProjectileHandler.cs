@@ -12,6 +12,7 @@ namespace Assets.Scripts.WeaponSystem
     private float _damage;
     private float _speed;
     private Vector3 _direction;
+    private float _destroyTime = 0.001f;
 
     private Rigidbody _rigidbody;
 
@@ -35,7 +36,7 @@ namespace Assets.Scripts.WeaponSystem
       Quaternion collisionRotation = Quaternion.LookRotation(collisionNormal);
 
       LeanPool.Spawn(impactPrefab, collisionPoint, collisionRotation);
-      LeanPool.Despawn(gameObject, 0.001f);
+      LeanPool.Despawn(gameObject, _destroyTime);
     }
 
     public void SpawnInit(float damage, float speed, Vector3 direction) {
