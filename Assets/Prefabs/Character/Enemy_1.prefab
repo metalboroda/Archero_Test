@@ -265,7 +265,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 7257431524481593550}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.25
+  m_Radius: 1
   m_Speed: 5
   m_Acceleration: 25
   avoidancePriority: 50
@@ -275,7 +275,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 1.825
-  m_BaseOffset: -0.09
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &5323114178860310941
@@ -320,10 +320,10 @@ MonoBehaviour:
   <MaxIdlePatrolling>k__BackingField: 3
   <MinBattleIdle>k__BackingField: 0.75
   <MaxBattleIdle>k__BackingField: 1.5
-  <PatrollingRadius>k__BackingField: 25
+  <PatrollingRadius>k__BackingField: 30
   <BattleRadius>k__BackingField: 6
   useMinDistance: 1
-  <MinDistance>k__BackingField: 5
+  <MinDistance>k__BackingField: 3
 --- !u!114 &9041294448990314968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -438,7 +438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8110341521315921124, guid: 794f3e63310084947bae11bd76636e64, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8110341521315921124, guid: 794f3e63310084947bae11bd76636e64, type: 3}
       propertyPath: m_LocalPosition.z
