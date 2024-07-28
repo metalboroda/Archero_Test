@@ -16,11 +16,6 @@ namespace Assets.Scripts.Character.Player.States
       if (CharacterWeaponHandler == null || CharacterWeaponHandler.HasWeapon() == false) {
         CharacterAnimationHandler.MovementAnimation2D();
       }
-
-      EventBus<EventStructs.EnemyDetected>.Raise(new EventStructs.EnemyDetected {
-        TransformID = PlayerController.transform.GetInstanceID(),
-        Target = _target
-      });
     }
 
     public override void Update() {
@@ -45,11 +40,18 @@ namespace Assets.Scripts.Character.Player.States
     public override void FixedUpdate() {
       RigidbodyMovementService.Move(InputService.GeMovementVector());
 
-      if (CharacterEnemyDetection.GetNearestEnemy() == null) {
+      _target = CharacterEnemyDetection.GetNearestEnemy();
+
+      if (_target == null) {
         FiniteStateMachine.ChangeState(new PlayerMovementState(PlayerController));
       }
       else {
         RigidbodyMovementService.LookAt(_target);
+
+        EventBus<EventStructs.EnemyDetected>.Raise(new EventStructs.EnemyDetected {
+          TransformID = PlayerController.transform.GetInstanceID(),
+          Target = _target
+        });
       }
     }
 
