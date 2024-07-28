@@ -12,6 +12,7 @@ namespace Assets.Scripts.Character.Player.States
     protected CharacterEnemyDetection CharacterEnemyDetection;
     protected CharacterWeaponHandler CharacterWeaponHandler;
     protected CharacterAnimationHandler CharacterAnimationHandler;
+    protected CharacterIKHandler CharacterIKHandler;
 
     protected FiniteStateMachine FiniteStateMachine;
     protected InputService InputService;
@@ -23,6 +24,7 @@ namespace Assets.Scripts.Character.Player.States
       CharacterEnemyDetection = PlayerController.CharacterEnemyDetection;
       CharacterWeaponHandler = PlayerController.CharacterWeaponHandler;
       CharacterAnimationHandler = PlayerController.CharacterAnimationHandler;
+      CharacterIKHandler = PlayerController.CharacterIKHandler;
 
       FiniteStateMachine = PlayerController.FiniteStateMachine;
       InputService = new InputService();

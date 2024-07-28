@@ -1,3 +1,6 @@
+using __Game.Resources.Scripts.EventBus;
+using Assets.Scripts.Character.Player.States;
+using Assets.Scripts.Item;
 using Assets.Scripts.Services.Character;
 using UnityEngine;
 
@@ -6,10 +9,17 @@ namespace Assets.Scripts.Character.Player
   public class PlayerHandler : CharacterHandlerBase
   {
     [Header("")]
-    [SerializeField] private CapsuleCollider capsuleCollider;
     [SerializeField] private CapsuleCollider capsuleTrigger;
+    [SerializeField] private AimPoint _aimPoint;
+
+    private Rigidbody _rigidbody;
+
+    private PlayerController _playerController;
 
     private void Awake() {
+      _rigidbody = GetComponent<Rigidbody>();
+      _playerController = GetComponent<PlayerController>();
+
       HealthService = new HealthService(MaxHealth);
     }
 
@@ -31,10 +41,17 @@ namespace Assets.Scripts.Character.Player
     }
 
     protected override void OnDeath() {
-      capsuleCollider.enabled = false;
+      _rigidbody.velocity = Vector3.zero;
       capsuleTrigger.enabled = false;
+      _aimPoint.gameObject.SetActive(false);
 
-      Destroy(gameObject, 10);
+      _playerController.FiniteStateMachine.ChangeState(new PlayerDeathState(_playerController));
+
+      EventBus<EventStructs.CharacterDead>.Raise(new EventStructs.CharacterDead {
+        TransformID = transform.GetInstanceID()
+      });
+
+      EventBus<EventStructs.PlayerDead>.Raise(new EventStructs.PlayerDead());
     }
   }
 }

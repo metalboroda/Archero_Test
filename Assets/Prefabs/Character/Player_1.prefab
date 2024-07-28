@@ -232,8 +232,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 100
-  capsuleCollider: {fileID: 4859202456723976691}
   capsuleTrigger: {fileID: 1552043412352059047}
+  _aimPoint: {fileID: 1733022010391862867}
 --- !u!114 &3191379339975159540
 MonoBehaviour:
   m_ObjectHideFlags: 0

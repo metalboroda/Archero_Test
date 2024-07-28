@@ -5,8 +5,10 @@ namespace Assets.Scripts.Character.Enemy.States
     public EnemyDeathState(EnemyController enemyController) : base(enemyController) { }
 
     public override void Enter() {
-      AgentMovementService.StopMovement();
+      EnemyMovementHandler.DisableAgent();
       CharacterAnimationHandler.DeathAnimation();
+      CharacterAnimationHandler.UndergroundAnimation();
+      CharacterIKHandler.DisableAllIK();
     }
   }
 }

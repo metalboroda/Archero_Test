@@ -33,6 +33,10 @@ namespace __Game.Resources.Scripts.EventBus
     }
     #endregion
 
+    #region Player
+    public struct PlayerDead : IEvent { }
+    #endregion
+
     #region Enemy Detection
     public struct EnemyDetected : IEvent
     {

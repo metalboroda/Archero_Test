@@ -56,7 +56,13 @@ namespace Assets.Scripts.Character
 
     public void DeathAnimation() {
       _animationService.Crossfade(characterAnimationSO.GetRandomDeathAnimation());
+    }
 
+    public void VictoryAnimation() {
+      _animationService.Crossfade(characterAnimationSO.GetRanfomVictoryAnimation());
+    }
+
+    public void UndergroundAnimation() {
       transform.DOMoveY(-3, undergroundDuration)
         .SetDelay(undergroundDelay);
     }

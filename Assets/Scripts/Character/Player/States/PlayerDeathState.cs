@@ -6,6 +6,7 @@ namespace Assets.Scripts.Character.Player.States
 
     public override void Enter() {
       CharacterAnimationHandler.DeathAnimation();
+      CharacterIKHandler.DisableAllIK();
     }
   }
 }

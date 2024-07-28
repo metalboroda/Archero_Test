@@ -11,6 +11,7 @@ namespace Assets.Scripts.Character.Enemy.States
     protected CharacterEnemyDetection CharacterEnemyDetection;
     protected CharacterWeaponHandler CharacterWeaponHandler;
     protected CharacterAnimationHandler CharacterAnimationHandler;
+    protected CharacterIKHandler CharacterIKHandler;
 
     protected FiniteStateMachine FiniteStateMachine;
     protected AgentMovementService AgentMovementService;
@@ -22,6 +23,7 @@ namespace Assets.Scripts.Character.Enemy.States
       CharacterEnemyDetection = EnemyController.CharacterEnemyDetection;
       CharacterWeaponHandler = EnemyController.CharacterWeaponHandler;
       CharacterAnimationHandler = EnemyController.CharacterAnimationHandler;
+      CharacterIKHandler = EnemyController.CharacterIKHandler;
 
       FiniteStateMachine = EnemyController.FiniteStateMachine;
       AgentMovementService = EnemyMovementHandler.AgentMovementService;

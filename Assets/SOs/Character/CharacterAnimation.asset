@@ -21,6 +21,11 @@ MonoBehaviour:
   - {fileID: -203655887218126122, guid: 1fcd357cb2ae4ba43a895b2e72956f47, type: 3}
   - {fileID: -203655887218126122, guid: 6210e6d69852dc546a4d6349adebf904, type: 3}
   - {fileID: -203655887218126122, guid: ebfae1b09b346de47b7c3a61707c9383, type: 3}
+  victoryAnimations:
+  - {fileID: -203655887218126122, guid: 7bb93296f8b47a441b529b93cd5fddd7, type: 3}
+  - {fileID: -203655887218126122, guid: 3c50fac08692cb846800fd324b61f694, type: 3}
+  - {fileID: -203655887218126122, guid: 284fa05d1de05d24dbe55d9af2772426, type: 3}
+  - {fileID: -203655887218126122, guid: f8d78b0ae3d7e8e41a97a36b2560b0a4, type: 3}
   <MovementValue>k__BackingField: MovementValue
   <MovementValueX>k__BackingField: MovementValueX
   <MovementValueY>k__BackingField: MovementValueY

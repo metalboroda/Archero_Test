@@ -65,6 +65,8 @@ namespace Assets.Scripts.Character
       _currentWeapon = newWeapon;
       _currentWeaponHandler = _currentWeapon.Equip(_weaponEquipPoint.transform);
 
+      _currentWeaponHandler.SetWeaponHandler(this);
+
       EventBus<EventStructs.WeaponEquipped>.Raise(new EventStructs.WeaponEquipped {
         TransformID = transform.GetInstanceID(),
         AnimationName = _currentWeapon.MovementAnimation,

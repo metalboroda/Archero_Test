@@ -8,12 +8,14 @@ namespace Assets.Scripts.Character.Enemy
     public CharacterEnemyDetection CharacterEnemyDetection { get; private set; }
     public CharacterWeaponHandler CharacterWeaponHandler { get; private set; }
     public CharacterAnimationHandler CharacterAnimationHandler { get; private set; }
+    public CharacterIKHandler CharacterIKHandler { get; private set; }
 
     protected override void Awake() {
       EnemyMovementHandler = GetComponent<EnemyMovementHandler>();
       CharacterEnemyDetection = GetComponent<CharacterEnemyDetection>();
       CharacterWeaponHandler = GetComponent<CharacterWeaponHandler>();
       CharacterAnimationHandler = GetComponent<CharacterAnimationHandler>();
+      CharacterIKHandler = GetComponent<CharacterIKHandler>();
 
       base.Awake();
     }

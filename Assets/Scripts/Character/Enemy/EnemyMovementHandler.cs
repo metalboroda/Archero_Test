@@ -32,21 +32,11 @@ namespace Assets.Scripts.Character.Enemy
 
     private float _startAngularSpeed;
 
-    private EventBinding<EventStructs.CharacterDead> _enemyDeadEvent;
-
     private void Awake() {
       NavMeshAgent = GetComponent<NavMeshAgent>();
 
       AgentMovementService = new AgentMovementService(lookRotationSpeed, NavMeshAgent, this);
       NavMeshService = new NavMeshService(MinDistance);
-    }
-
-    private void OnEnable() {
-      _enemyDeadEvent = new EventBinding<EventStructs.CharacterDead>(OnDeath);
-    }
-
-    private void OnDisable() {
-      _enemyDeadEvent.Remove(OnDeath);
     }
 
     public void Start() {
@@ -57,9 +47,7 @@ namespace Assets.Scripts.Character.Enemy
       NavMeshAgent.angularSpeed = _startAngularSpeed;
     }
 
-    private void OnDeath(EventStructs.CharacterDead enemyDead) {
-      if (transform.GetInstanceID() != enemyDead.TransformID) return;
-
+    public void DisableAgent() {
       NavMeshAgent.enabled = false;
     }
   }

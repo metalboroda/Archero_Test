@@ -11,6 +11,8 @@ namespace Assets.Scripts.Character.Enemy
 
     private EnemyController _enemyController;
 
+    private EventBinding<EventStructs.PlayerDead> _playerDeadEvent;
+
     private void Awake() {
       _capsuleCollider = GetComponent<CapsuleCollider>();
       _enemyController = GetComponent<EnemyController>();
@@ -21,11 +23,15 @@ namespace Assets.Scripts.Character.Enemy
     private void OnEnable() {
       HealthService.HealthChanged += OnHealthChanged;
       HealthService.Dead += OnDeath;
+
+      _playerDeadEvent = new EventBinding<EventStructs.PlayerDead>(OnPlayerDeath);
     }
 
     private void OnDisable() {
       HealthService.HealthChanged -= OnHealthChanged;
       HealthService.Dead -= OnDeath;
+
+      _playerDeadEvent.Remove(OnPlayerDeath);
     }
 
     public override void Damage(float damage) {
@@ -45,6 +51,10 @@ namespace Assets.Scripts.Character.Enemy
       });
 
       Destroy(gameObject, 10);
+    }
+
+    private void OnPlayerDeath() {
+      _enemyController.FiniteStateMachine.ChangeState(new EnemyVictoryState(_enemyController));
     }
   }
 }
