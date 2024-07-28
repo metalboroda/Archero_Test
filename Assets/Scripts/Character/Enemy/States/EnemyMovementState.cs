@@ -8,11 +8,13 @@ namespace Assets.Scripts.Character.Enemy.States
 
     public override void Enter() {
       // Temporary
-      if (CharacterWeaponHandler == null || !CharacterWeaponHandler.HasWeapon()) {
+      if (CharacterWeaponHandler == null || CharacterWeaponHandler.HasWeapon() == false) {
         CharacterAnimationHandler.MovementAnimation2D();
       }
 
-      EnemyMovementHandler.ResetNavMeshSettings();
+      if (EnemyMovementHandler != null)
+        EnemyMovementHandler.ResetNavMeshSettings();
+
       PatrollingMovement();
     }
 

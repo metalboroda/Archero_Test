@@ -1,27 +1,28 @@
+using Assets.__Game.Resources.Scripts.StateMachine;
 using Assets.Scripts.Character.Enemy.States;
+using Assets.Scripts.Level;
+using Assets.Scripts.Services.Character;
+using System.Collections;
+using UnityEngine;
 
 namespace Assets.Scripts.Character.Enemy
 {
-  public class EnemyController : CharacterControllerBase
+  public class FlyingEnemyController : CharacterControllerBase
   {
     public EnemyMovementHandler EnemyMovementHandler { get; private set; }
     public CharacterEnemyDetection CharacterEnemyDetection { get; private set; }
     public CharacterWeaponHandler CharacterWeaponHandler { get; private set; }
-    public CharacterAnimationHandler CharacterAnimationHandler { get; private set; }
-    public CharacterIKHandler CharacterIKHandler { get; private set; }
 
     protected override void Awake() {
       EnemyMovementHandler = GetComponent<EnemyMovementHandler>();
       CharacterEnemyDetection = GetComponent<CharacterEnemyDetection>();
       CharacterWeaponHandler = GetComponent<CharacterWeaponHandler>();
-      CharacterAnimationHandler = GetComponent<CharacterAnimationHandler>();
-      CharacterIKHandler = GetComponent<CharacterIKHandler>();
 
       base.Awake();
     }
 
     private void Start() {
-      FiniteStateMachine.Init(new EnemyMovementState(this));
+      FiniteStateMachine.Init(new FlyingEnemyMovementState(this));
     }
 
     protected override void Update() {

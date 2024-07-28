@@ -6,18 +6,13 @@ using UnityEngine;
 
 namespace Assets.Scripts.Character.Enemy
 {
-  public class EnemyHandler : CharacterHandlerBase
+  public class FlyingEnemyHandler : CharacterHandlerBase
   {
-    private CapsuleCollider _capsuleCollider;
-
-    private EnemyController _enemyController;
+    private FlyingEnemyController _flyingEnemyController;
 
     private EventBinding<EventStructs.PlayerDead> _playerDeadEvent;
 
     private void Awake() {
-      _capsuleCollider = GetComponent<CapsuleCollider>();
-      _enemyController = GetComponent<EnemyController>();
-
       HealthService = new HealthService(MaxHealth);
     }
 
@@ -43,22 +38,21 @@ namespace Assets.Scripts.Character.Enemy
     }
 
     protected override void OnDeath() {
-      _enemyController.FiniteStateMachine.ChangeState(new EnemyDeathState(_enemyController));
+      //_flyingEnemyController.FiniteStateMachine.ChangeState(new EnemyDeathState(_enemyController));
 
-      _capsuleCollider.enabled = false;
       AimPoint.gameObject.SetActive(false);
 
       EventBus<EventStructs.CharacterDead>.Raise(new EventStructs.CharacterDead {
         TransformID = transform.GetInstanceID()
       });
 
-      Destroy(gameObject, 10);
+      Destroy(gameObject);
     }
 
     private void OnPlayerDeath() {
-      if (_enemyController.FiniteStateMachine.CurrentState is EnemyDeathState) return;
+      //if (_enemyController.FiniteStateMachine.CurrentState is EnemyDeathState) return;
 
-      _enemyController.FiniteStateMachine.ChangeState(new EnemyVictoryState(_enemyController));
+      //_enemyController.FiniteStateMachine.ChangeState(new EnemyVictoryState(_enemyController));
     }
   }
 }

@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 100
-  _aimPoint: {fileID: 2113515037046507478}
+  AimPoint: {fileID: 2113515037046507478}
 --- !u!114 &7360271180043202128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,6 +316,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3f141a4147e93a428600dd607620c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSpeed: 5
+  rotationSpeed: 5
   lookRotationSpeed: 5
   <MinPatrollingIdle>k__BackingField: 2
   <MaxIdlePatrolling>k__BackingField: 4

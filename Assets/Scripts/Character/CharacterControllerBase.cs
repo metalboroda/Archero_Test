@@ -12,15 +12,12 @@ namespace Assets.Scripts.Character
     }
 
     protected virtual void Update() {
-      FiniteStateMachine.CurrentState.Update();
     }
 
     protected virtual void FixedUpdate() {
-      FiniteStateMachine.CurrentState.FixedUpdate();
     }
 
     protected virtual void OnDestroy() {
-      FiniteStateMachine.CurrentState.Exit();
     }
   }
 }

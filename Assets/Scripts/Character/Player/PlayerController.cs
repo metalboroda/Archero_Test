@@ -26,15 +26,15 @@ namespace Assets.Scripts.Character.Player
     }
 
     protected override void Update() {
-      base.Update();
+      FiniteStateMachine.CurrentState.Update();
     }
 
     protected override void FixedUpdate() {
-      base.FixedUpdate();
+      FiniteStateMachine.CurrentState.FixedUpdate();
     }
 
     protected override void OnDestroy() {
-      base.OnDestroy();
+      FiniteStateMachine.CurrentState.Exit();
     }
   }
 }

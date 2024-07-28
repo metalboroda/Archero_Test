@@ -10,7 +10,6 @@ namespace Assets.Scripts.Character.Player
   {
     [Header("")]
     [SerializeField] private CapsuleCollider capsuleTrigger;
-    [SerializeField] private AimPoint _aimPoint;
 
     private Rigidbody _rigidbody;
 
@@ -43,7 +42,7 @@ namespace Assets.Scripts.Character.Player
     protected override void OnDeath() {
       _rigidbody.velocity = Vector3.zero;
       capsuleTrigger.enabled = false;
-      _aimPoint.gameObject.SetActive(false);
+      AimPoint.gameObject.SetActive(false);
 
       _playerController.FiniteStateMachine.ChangeState(new PlayerDeathState(_playerController));
 

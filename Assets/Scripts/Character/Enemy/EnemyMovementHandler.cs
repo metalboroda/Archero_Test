@@ -1,4 +1,4 @@
-using __Game.Resources.Scripts.EventBus;
+using Assets.Scripts.Level;
 using Assets.Scripts.Services.Character;
 using UnityEngine;
 using UnityEngine.AI;
@@ -8,6 +8,8 @@ namespace Assets.Scripts.Character.Enemy
   public class EnemyMovementHandler : MonoBehaviour
   {
     [Header("Settings")]
+    [SerializeField] private float movementSpeed = 5f;
+    [SerializeField] private float rotationSpeed = 5f;
     [SerializeField] private float lookRotationSpeed = 5f;
 
     [field: Header("NavMesh Settings")]
@@ -28,19 +30,30 @@ namespace Assets.Scripts.Character.Enemy
     public NavMeshAgent NavMeshAgent { get; private set; }
 
     public AgentMovementService AgentMovementService { get; private set; }
+    public VolumeMovementService VolumeMovementService { get; private set; }
     public NavMeshService NavMeshService { get; private set; }
+    public VolumePathService VolumePathService { get; private set; }
 
     private float _startAngularSpeed;
 
+    private LevelHandler _levelHandler;
+
     private void Awake() {
+      _levelHandler = LevelHandler.Instance;
+
       NavMeshAgent = GetComponent<NavMeshAgent>();
 
-      AgentMovementService = new AgentMovementService(lookRotationSpeed, NavMeshAgent, this);
+      if (NavMeshAgent != null)
+        AgentMovementService = new AgentMovementService(lookRotationSpeed, NavMeshAgent, this);
+
+      VolumeMovementService = new VolumeMovementService(movementSpeed, rotationSpeed, lookRotationSpeed, transform);
       NavMeshService = new NavMeshService(MinDistance);
+      VolumePathService = new VolumePathService(_levelHandler.PathVolume, _levelHandler.ObstacleLayer);
     }
 
     public void Start() {
-      _startAngularSpeed = NavMeshAgent.angularSpeed;
+      if (NavMeshAgent != null)
+        _startAngularSpeed = NavMeshAgent.angularSpeed;
     }
 
     public void ResetNavMeshSettings() {

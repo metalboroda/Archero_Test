@@ -1,4 +1,5 @@
 using Assets.Scripts.Interfaces;
+using Assets.Scripts.Item;
 using Assets.Scripts.Services.Character;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ namespace Assets.Scripts.Character
   {
     [Header("Health Settings")]
     [SerializeField] protected float MaxHealth;
+    [Header("")]
+    [SerializeField] protected AimPoint AimPoint;
 
     protected HealthService HealthService;
 
