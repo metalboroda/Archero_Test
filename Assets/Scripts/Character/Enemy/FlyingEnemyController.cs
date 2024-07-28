@@ -1,9 +1,5 @@
 using Assets.__Game.Resources.Scripts.StateMachine;
 using Assets.Scripts.Character.Enemy.States;
-using Assets.Scripts.Level;
-using Assets.Scripts.Services.Character;
-using System.Collections;
-using UnityEngine;
 
 namespace Assets.Scripts.Character.Enemy
 {

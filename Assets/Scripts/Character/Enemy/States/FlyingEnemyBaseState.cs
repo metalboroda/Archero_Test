@@ -12,8 +12,9 @@ namespace Assets.Scripts.Character.Enemy.States
     protected CharacterWeaponHandler CharacterWeaponHandler;
 
     protected FiniteStateMachine FiniteStateMachine;
-    protected VolumeMovementService VolumeMovementService;
-    protected VolumePathService VolumePathService;
+
+    protected AgentMovementService AgentMovementService;
+    protected NavMeshService NavMeshService;
 
     public FlyingEnemyBaseState(FlyingEnemyController flyingEnemyController) {
       FlyingEnemyController = flyingEnemyController;
@@ -22,8 +23,9 @@ namespace Assets.Scripts.Character.Enemy.States
       CharacterWeaponHandler = FlyingEnemyController.CharacterWeaponHandler;
 
       FiniteStateMachine = FlyingEnemyController.FiniteStateMachine;
-      VolumeMovementService = EnemyMovementHandler.VolumeMovementService;
-      VolumePathService = EnemyMovementHandler.VolumePathService;
+
+      AgentMovementService = EnemyMovementHandler.AgentMovementService;
+      NavMeshService = EnemyMovementHandler.NavMeshService;
     }
   }
 }

@@ -8,8 +8,6 @@ namespace Assets.Scripts.Character.Enemy
   public class EnemyMovementHandler : MonoBehaviour
   {
     [Header("Settings")]
-    [SerializeField] private float movementSpeed = 5f;
-    [SerializeField] private float rotationSpeed = 5f;
     [SerializeField] private float lookRotationSpeed = 5f;
 
     [field: Header("NavMesh Settings")]
@@ -25,16 +23,15 @@ namespace Assets.Scripts.Character.Enemy
     [field: SerializeField] public float BattleRadius { get; private set; } = 10f;
 
     [field: Space]
+    [SerializeField] private bool useMinDistance = true;
     [field: SerializeField] public float MinDistance { get; private set; } = 5f;
 
     public NavMeshAgent NavMeshAgent { get; private set; }
 
     public AgentMovementService AgentMovementService { get; private set; }
-    public VolumeMovementService VolumeMovementService { get; private set; }
     public NavMeshService NavMeshService { get; private set; }
-    public VolumePathService VolumePathService { get; private set; }
 
-    private float _startAngularSpeed;
+    private float _startAngularSpeed = 500f;
 
     private LevelHandler _levelHandler;
 
@@ -43,17 +40,8 @@ namespace Assets.Scripts.Character.Enemy
 
       NavMeshAgent = GetComponent<NavMeshAgent>();
 
-      if (NavMeshAgent != null)
-        AgentMovementService = new AgentMovementService(lookRotationSpeed, NavMeshAgent, this);
-
-      VolumeMovementService = new VolumeMovementService(movementSpeed, rotationSpeed, lookRotationSpeed, transform);
-      NavMeshService = new NavMeshService(MinDistance);
-      VolumePathService = new VolumePathService(_levelHandler.PathVolume, _levelHandler.ObstacleLayer);
-    }
-
-    public void Start() {
-      if (NavMeshAgent != null)
-        _startAngularSpeed = NavMeshAgent.angularSpeed;
+      AgentMovementService = new AgentMovementService(lookRotationSpeed, NavMeshAgent, this);
+      NavMeshService = new NavMeshService(MinDistance, useMinDistance);
     }
 
     public void ResetNavMeshSettings() {

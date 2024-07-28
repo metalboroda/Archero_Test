@@ -5,12 +5,14 @@ namespace Assets.Scripts.Services.Character
 {
   public class NavMeshService
   {
+    private bool _useMinDistance;
     private float _minDistanceFromPrevious;
     private Vector3 _previousPoint;
     private bool _isFirstPoint;
 
-    public NavMeshService(float minDistanceFromPrevious) {
+    public NavMeshService(float minDistanceFromPrevious, bool useMinDistance) {
       _minDistanceFromPrevious = minDistanceFromPrevious;
+      _useMinDistance = useMinDistance;
 
       _isFirstPoint = true;
     }
@@ -35,7 +37,7 @@ namespace Assets.Scripts.Services.Character
 
         distanceFromPrevious = _isFirstPoint ? _minDistanceFromPrevious : Vector3.Distance(randomPoint, _previousPoint);
         attempts++;
-      } while (distanceFromPrevious < _minDistanceFromPrevious && attempts < maxAttempts);
+      } while (_useMinDistance && distanceFromPrevious < _minDistanceFromPrevious && attempts < maxAttempts);
 
       _previousPoint = randomPoint;
       _isFirstPoint = false;

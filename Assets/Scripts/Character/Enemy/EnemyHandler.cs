@@ -14,7 +14,9 @@ namespace Assets.Scripts.Character.Enemy
 
     private EventBinding<EventStructs.PlayerDead> _playerDeadEvent;
 
-    private void Awake() {
+    protected override void Awake() {
+      base.Awake();
+
       _capsuleCollider = GetComponent<CapsuleCollider>();
       _enemyController = GetComponent<EnemyController>();
 

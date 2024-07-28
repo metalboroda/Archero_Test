@@ -9,10 +9,14 @@ namespace Assets.Scripts.Character
   {
     [Header("Health Settings")]
     [SerializeField] protected float MaxHealth;
-    [Header("")]
-    [SerializeField] protected AimPoint AimPoint;
+
+    protected AimPoint AimPoint;
 
     protected HealthService HealthService;
+
+    protected virtual void Awake() {
+      AimPoint = GetComponentInChildren<AimPoint>();
+    }
 
     protected virtual void OnHealthChanged(float value) { }
 

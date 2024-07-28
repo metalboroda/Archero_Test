@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7685527136769007404}
+  m_Father: {fileID: 6130797871588283440}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5210384192771290268
 MonoBehaviour:
@@ -211,7 +211,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6130797871588283440}
-  - {fileID: 3777507325077876758}
   m_Father: {fileID: 7685527136769007404}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7892423273754182175
@@ -226,7 +225,7 @@ GameObject:
   - component: {fileID: 3912774250671370143}
   - component: {fileID: 1622406395930903427}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Visor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -240,12 +239,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7892423273754182175}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.25}
   m_LocalScale: {x: 0.75, y: 0.25, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5094904811972480939}
+  m_Father: {fileID: 6130797871588283440}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3912774250671370143
 MeshFilter:
@@ -275,7 +274,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f779ed9b7c97646438a35f44ec80093b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -308,6 +307,7 @@ GameObject:
   - component: {fileID: 7685527136769007404}
   - component: {fileID: 1699159150194377169}
   - component: {fileID: 2432959550522710454}
+  - component: {fileID: 4980792197995078656}
   - component: {fileID: 2175659103869760316}
   - component: {fileID: 8968240044376973528}
   - component: {fileID: 3033989557735670769}
@@ -339,7 +339,6 @@ Transform:
   - {fileID: 674156046651362997}
   - {fileID: 818153340023191514}
   - {fileID: 5610550393055378619}
-  - {fileID: 8135960070579425719}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1699159150194377169
@@ -392,6 +391,28 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!195 &4980792197995078656
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8237349318303421967}
+  m_Enabled: 1
+  m_AgentTypeID: -1372625422
+  m_Radius: 0.5
+  m_Speed: 5
+  m_Acceleration: 10
+  avoidancePriority: 50
+  m_AngularSpeed: 500
+  m_StoppingDistance: 1.75
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &2175659103869760316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -417,7 +438,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 100
-  AimPoint: {fileID: 5548629627802186410}
 --- !u!114 &3033989557735670769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,16 +450,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3f141a4147e93a428600dd607620c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
-  rotationSpeed: 5
   lookRotationSpeed: 5
   <MinPatrollingIdle>k__BackingField: 2
   <MaxIdlePatrolling>k__BackingField: 4
   <MinBattleIdle>k__BackingField: 0.75
   <MaxBattleIdle>k__BackingField: 1.5
-  <PatrollingRadius>k__BackingField: 50
+  <PatrollingRadius>k__BackingField: 25
   <BattleRadius>k__BackingField: 6
-  <MinDistance>k__BackingField: 3
+  useMinDistance: 1
+  <MinDistance>k__BackingField: 5
 --- !u!114 &9166025953248542777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,13 +471,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01117ce28d98c94bac821058de6ba89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRadius: 10
+  detectionRadius: 15
   enemyLayer:
     serializedVersion: 2
     m_Bits: 1024
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 320
   maxEnemies: 10
   detectionPoint: {fileID: 504895263787731199}
 --- !u!114 &420540339573094780
@@ -474,6 +493,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: a8bb9cdb2eccca749b792ce75be8d3df, type: 2}
+  weaponLookAtSpeed: 25
 --- !u!1 &8630046561169540948
 GameObject:
   m_ObjectHideFlags: 0
@@ -535,7 +555,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3777507325077876758}
+  - {fileID: 8135960070579425719}
   m_Father: {fileID: 5094904811972480939}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4026417798457534514
@@ -566,7 +588,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 8f1edeaba1a5ab04d998c4a1870477db, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

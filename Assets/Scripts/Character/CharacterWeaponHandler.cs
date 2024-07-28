@@ -9,6 +9,8 @@ namespace Assets.Scripts.Character
   public class CharacterWeaponHandler : MonoBehaviour
   {
     [SerializeField] private WeaponSO weapon;
+    [Header("")]
+    [SerializeField] private float weaponLookAtSpeed = 25f;
 
     private float _lastShotTime;
     private Coroutine _shootingCoroutine;
@@ -20,7 +22,6 @@ namespace Assets.Scripts.Character
     private InputService _inputService;
 
     private EventBinding<EventStructs.CharacterBattleMovementStopped> _characterBattleMovementStopped;
-
 
     private void Awake() {
       _inputService = new InputService();
@@ -50,6 +51,19 @@ namespace Assets.Scripts.Character
       if (_currentWeapon != null && _currentWeaponHandler != null && Time.time - _lastShotTime >= _currentWeapon.FireRate) {
         _currentWeapon.Attack(_currentWeaponHandler.ShootingPoint);
         _lastShotTime = Time.time;
+      }
+    }
+
+    public void WeaponLookAt(Transform target) {
+      if (target == null) {
+        _weaponEquipPoint.transform.rotation = Quaternion.identity;
+      }
+      else {
+        Vector3 direction = target.position - _weaponEquipPoint.transform.position;
+        Quaternion rotation = Quaternion.LookRotation(direction);
+
+        _weaponEquipPoint.transform.rotation = Quaternion.Slerp(
+          _weaponEquipPoint.transform.rotation, rotation, Time.deltaTime * weaponLookAtSpeed);
       }
     }
 

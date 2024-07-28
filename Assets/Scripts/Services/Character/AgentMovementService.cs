@@ -32,7 +32,7 @@ namespace Assets.Scripts.Services.Character
       _lastMovement = movement;
     }
 
-    public void LookAt(Transform target) {
+    public void LookAtY(Transform target) {
       Vector3 directionToTarget = (target.position - _navMeshAgent.transform.position).normalized;
 
       directionToTarget.y = 0;

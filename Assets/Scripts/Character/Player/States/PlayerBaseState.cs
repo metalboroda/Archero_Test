@@ -24,7 +24,7 @@ namespace Assets.Scripts.Character.Player.States
       CharacterEnemyDetection = PlayerController.CharacterEnemyDetection;
       CharacterWeaponHandler = PlayerController.CharacterWeaponHandler;
       CharacterAnimationHandler = PlayerController.CharacterAnimationHandler;
-      CharacterIKHandler = PlayerController.CharacterIKHandler;
+      CharacterIKHandler = playerController.CharacterIKHandler;
 
       FiniteStateMachine = PlayerController.FiniteStateMachine;
       InputService = new InputService();

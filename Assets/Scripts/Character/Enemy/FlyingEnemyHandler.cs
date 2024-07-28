@@ -1,8 +1,6 @@
 using __Game.Resources.Scripts.EventBus;
-using Assets.Scripts.Character.Enemy.States;
 using Assets.Scripts.Item;
 using Assets.Scripts.Services.Character;
-using UnityEngine;
 
 namespace Assets.Scripts.Character.Enemy
 {
@@ -12,7 +10,9 @@ namespace Assets.Scripts.Character.Enemy
 
     private EventBinding<EventStructs.PlayerDead> _playerDeadEvent;
 
-    private void Awake() {
+    protected override void Awake() {
+      base.Awake();
+
       HealthService = new HealthService(MaxHealth);
     }
 

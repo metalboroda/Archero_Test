@@ -303,7 +303,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 100
-  AimPoint: {fileID: 2113515037046507478}
 --- !u!114 &7360271180043202128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,8 +315,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3f141a4147e93a428600dd607620c2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
-  rotationSpeed: 5
   lookRotationSpeed: 5
   <MinPatrollingIdle>k__BackingField: 2
   <MaxIdlePatrolling>k__BackingField: 4
@@ -325,7 +322,8 @@ MonoBehaviour:
   <MaxBattleIdle>k__BackingField: 1.5
   <PatrollingRadius>k__BackingField: 25
   <BattleRadius>k__BackingField: 6
-  <MinDistance>k__BackingField: 3
+  useMinDistance: 1
+  <MinDistance>k__BackingField: 5
 --- !u!114 &9041294448990314968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,7 +342,7 @@ MonoBehaviour:
     m_Bits: 1024
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 320
   maxEnemies: 10
   detectionPoint: {fileID: 8464734206272580359}
 --- !u!114 &4357679183473323172

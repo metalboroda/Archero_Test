@@ -15,7 +15,9 @@ namespace Assets.Scripts.Character.Player
 
     private PlayerController _playerController;
 
-    private void Awake() {
+    protected override void Awake() {
+      base.Awake();
+
       _rigidbody = GetComponent<Rigidbody>();
       _playerController = GetComponent<PlayerController>();
 

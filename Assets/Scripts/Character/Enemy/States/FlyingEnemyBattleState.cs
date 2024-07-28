@@ -1,24 +1,20 @@
 using __Game.Resources.Scripts.EventBus;
+using Assets.Scripts.Services.Character;
 using UnityEngine;
 
 namespace Assets.Scripts.Character.Enemy.States
 {
-  public class EnemyBattleState : EnemyBaseState
+  public class FlyingEnemyBattleState : FlyingEnemyBaseState
   {
     private Transform _target;
 
-    public EnemyBattleState(EnemyController enemyController, Transform target = null) : base(enemyController) {
+    public FlyingEnemyBattleState(FlyingEnemyController flyingEnemyController, Transform target) : base(flyingEnemyController) {
       _target = target;
     }
 
     public override void Enter() {
-      // Temporary
-      if (CharacterWeaponHandler == null || CharacterWeaponHandler.HasWeapon() == false) {
-        CharacterAnimationHandler.MovementAnimation2D();
-      }
-
       EventBus<EventStructs.EnemyDetected>.Raise(new EventStructs.EnemyDetected {
-        TransformID = EnemyController.transform.GetInstanceID(),
+        TransformID = FlyingEnemyController.transform.GetInstanceID(),
         Target = _target
       });
 
@@ -30,25 +26,23 @@ namespace Assets.Scripts.Character.Enemy.States
     public override void Update() {
       if (AgentMovementService.GetNormalizedSpeed() < 0.1f) {
         EventBus<EventStructs.CharacterBattleMovementStopped>.Raise(new EventStructs.CharacterBattleMovementStopped {
-          TransformID = EnemyController.transform.GetInstanceID(),
+          TransformID = FlyingEnemyController.transform.GetInstanceID(),
           Stopped = true
         });
       }
       else if (AgentMovementService.GetNormalizedSpeed() >= 0.1f) {
         EventBus<EventStructs.CharacterBattleMovementStopped>.Raise(new EventStructs.CharacterBattleMovementStopped {
-          TransformID = EnemyController.transform.GetInstanceID(),
+          TransformID = FlyingEnemyController.transform.GetInstanceID(),
           Stopped = false
         });
       }
 
-      CharacterAnimationHandler.MovementValue2D(
-        AgentMovementService.GetDirection2D().x,
-        AgentMovementService.GetDirection2D().y);
+      CharacterWeaponHandler.WeaponLookAt(_target);
     }
 
     public override void FixedUpdate() {
       if (CharacterEnemyDetection.GetNearestEnemy() == null) {
-        FiniteStateMachine.ChangeState(new EnemyMovementState(EnemyController));
+        FiniteStateMachine.ChangeState(new FlyingEnemyMovementState(FlyingEnemyController));
       }
       else {
         AgentMovementService.LookAtY(_target);
@@ -57,12 +51,12 @@ namespace Assets.Scripts.Character.Enemy.States
 
     public override void Exit() {
       EventBus<EventStructs.EnemyDetected>.Raise(new EventStructs.EnemyDetected {
-        TransformID = EnemyController.transform.GetInstanceID(),
+        TransformID = FlyingEnemyController.transform.GetInstanceID(),
         Target = null
       });
 
       EventBus<EventStructs.CharacterBattleMovementStopped>.Raise(new EventStructs.CharacterBattleMovementStopped {
-        TransformID = EnemyController.transform.GetInstanceID(),
+        TransformID = FlyingEnemyController.transform.GetInstanceID(),
         Stopped = false
       });
 
