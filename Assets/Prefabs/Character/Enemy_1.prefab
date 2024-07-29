@@ -270,7 +270,7 @@ NavMeshAgent:
   m_Acceleration: 25
   avoidancePriority: 50
   m_AngularSpeed: 500
-  m_StoppingDistance: 0.25
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -320,10 +320,10 @@ MonoBehaviour:
   <MaxIdlePatrolling>k__BackingField: 3
   <MinBattleIdle>k__BackingField: 0.75
   <MaxBattleIdle>k__BackingField: 1.5
-  <PatrollingRadius>k__BackingField: 30
-  <BattleRadius>k__BackingField: 6
+  <PatrollingRadius>k__BackingField: 50
+  <BattleRadius>k__BackingField: 10
   useMinDistance: 1
-  <MinDistance>k__BackingField: 3
+  <MinDistance>k__BackingField: 5
 --- !u!114 &9041294448990314968
 MonoBehaviour:
   m_ObjectHideFlags: 0
