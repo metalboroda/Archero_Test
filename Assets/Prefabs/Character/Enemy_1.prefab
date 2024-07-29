@@ -272,8 +272,8 @@ NavMeshAgent:
   m_AngularSpeed: 500
   m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
+  m_AutoBraking: 0
+  m_AutoRepath: 0
   m_Height: 1.825
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
@@ -342,7 +342,7 @@ MonoBehaviour:
     m_Bits: 1024
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 320
+    m_Bits: 256
   maxEnemies: 10
   detectionPoint: {fileID: 8464734206272580359}
 --- !u!114 &4357679183473323172
