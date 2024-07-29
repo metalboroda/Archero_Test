@@ -14,6 +14,8 @@ namespace Assets.Scripts.Character.Enemy
     protected override void Awake() {
       base.Awake();
 
+      _flyingEnemyController = GetComponent<FlyingEnemyController>();
+
       HealthService = new HealthService(MaxHealth);
     }
 
