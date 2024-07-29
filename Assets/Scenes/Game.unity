@@ -418,7 +418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3755dfdbdad35ee4c8870a12031d45bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amount: 5
+  amount: 8
   enemiesToSpawn:
   - {fileID: 7257431524481593550, guid: 305b0bb661edc1c4fb1283cbf7f49e02, type: 3}
   - {fileID: 8237349318303421967, guid: e76584287315cf349a7c2314ea15ea59, type: 3}
@@ -3116,7 +3116,7 @@ GameObject:
   - component: {fileID: 742491593}
   - component: {fileID: 742491594}
   m_Layer: 0
-  m_Name: CoinManager
+  m_Name: DropManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3150,6 +3150,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 8225990318265595085, guid: bb1cdfef0e8246f4c90136fae0bbea81, type: 3}
+  minMedkitDropFrequency: 2
+  maxMedkitDropFrequency: 4
+  medkitPrefab: {fileID: 8520257469270202438, guid: d50ce9063770bfc4d9e7ae40cc11363d, type: 3}
 --- !u!1 &775742021
 GameObject:
   m_ObjectHideFlags: 0

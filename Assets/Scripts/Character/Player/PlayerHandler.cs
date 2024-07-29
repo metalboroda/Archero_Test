@@ -2,13 +2,14 @@ using __Game.Resources.Scripts.EventBus;
 using Assets.Scripts.Character.Player.States;
 using Assets.Scripts.GameManagement;
 using Assets.Scripts.GameManagement.States;
+using Assets.Scripts.Interfaces;
 using Assets.Scripts.Item;
 using Assets.Scripts.Services.Character;
 using UnityEngine;
 
 namespace Assets.Scripts.Character.Player
 {
-  public class PlayerHandler : CharacterHandlerBase
+  public class PlayerHandler : CharacterHandlerBase, IHealable
   {
     [Header("")]
     [SerializeField] private CapsuleCollider capsuleTrigger;
@@ -64,6 +65,10 @@ namespace Assets.Scripts.Character.Player
       EventBus<EventStructs.PlayerDead>.Raise(new EventStructs.PlayerDead());
 
       _gameBootstrapper.FiniteStateMachine.ChangeState(new GameLoseState());
+    }
+
+    public void Heal(float value) {
+      HealthService.IncreaseHealth(value);
     }
   }
 }

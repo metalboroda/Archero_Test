@@ -223,7 +223,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.59607846, b: 0, a: 1}
+      maxColor: {r: 0.95686275, g: 0.2627451, b: 0.21176471, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5123,7 +5123,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.59607846, b: 0, a: 1}
+      maxColor: {r: 0.95686275, g: 0.2627451, b: 0.21176471, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -10032,7 +10032,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.59607846, b: 0, a: 1}
+      maxColor: {r: 0.95686275, g: 0.2627451, b: 0.21176471, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -14722,7 +14722,7 @@ GameObject:
   - component: {fileID: 199056527070751096}
   - component: {fileID: 5295052341011603431}
   m_Layer: 0
-  m_Name: FX_LevelUp_01_Coin
+  m_Name: FX_LevelUp_01_Medkit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14936,7 +14936,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.59607846, b: 0, a: 1}
+      maxColor: {r: 0.95686275, g: 0.2627451, b: 0.21176471, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
