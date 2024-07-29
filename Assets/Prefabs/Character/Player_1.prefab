@@ -266,7 +266,7 @@ MonoBehaviour:
     m_Bits: 2048
   obstacleLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 256
   maxEnemies: 10
   detectionPoint: {fileID: 4383829092444030983}
 --- !u!114 &3648040994524816238
