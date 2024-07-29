@@ -42,6 +42,11 @@ namespace Assets.Scripts.Character.Enemy
     }
 
     protected override void OnHealthChanged(float value) {
+      EventBus<EventStructs.CharacterHealth>.Raise(new EventStructs.CharacterHealth {
+        TransformID = transform.GetInstanceID(),
+        MaxHealth = MaxHealth,
+        CurrentHealth = value
+      });
     }
 
     protected override void OnDeath() {

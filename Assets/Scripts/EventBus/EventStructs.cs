@@ -27,6 +27,13 @@ namespace __Game.Resources.Scripts.EventBus
       public bool Stopped;
     }
 
+    public struct CharacterHealth : IEvent
+    {
+      public int TransformID;
+      public float MaxHealth;
+      public float CurrentHealth;
+    }
+
     public struct CharacterDead : IEvent
     {
       public int TransformID;
