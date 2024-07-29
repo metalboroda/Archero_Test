@@ -26,6 +26,8 @@ namespace Assets.Scripts.Character.Enemy
     [SerializeField] private bool useMinDistance = true;
     [field: SerializeField] public float MinDistance { get; private set; } = 5f;
 
+    public Vector3 StartPoint { get; private set; }
+
     public NavMeshAgent NavMeshAgent { get; private set; }
 
     public AgentMovementService AgentMovementService { get; private set; }
@@ -42,6 +44,10 @@ namespace Assets.Scripts.Character.Enemy
 
       AgentMovementService = new AgentMovementService(lookRotationSpeed, NavMeshAgent, this);
       NavMeshService = new NavMeshService(MinDistance, useMinDistance);
+    }
+
+    private void Start() {
+      StartPoint = transform.position;
     }
 
     public void ResetNavMeshSettings() {

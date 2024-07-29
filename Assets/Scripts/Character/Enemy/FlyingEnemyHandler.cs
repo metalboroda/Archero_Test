@@ -1,12 +1,17 @@
 using __Game.Resources.Scripts.EventBus;
 using Assets.Scripts.Character.Enemy.States;
+using Assets.Scripts.Character.Player;
 using Assets.Scripts.Item;
 using Assets.Scripts.Services.Character;
+using UnityEngine;
 
 namespace Assets.Scripts.Character.Enemy
 {
   public class FlyingEnemyHandler : CharacterHandlerBase
   {
+    [Header("Contact Settings")]
+    [SerializeField] private float contactDamagePower = 10f;
+
     private FlyingEnemyController _flyingEnemyController;
 
     private EventBinding<EventStructs.PlayerDead> _playerDeadEvent;
@@ -31,6 +36,11 @@ namespace Assets.Scripts.Character.Enemy
       HealthService.Dead -= OnDeath;
 
       _playerDeadEvent.Remove(OnPlayerDeath);
+    }
+
+    private void OnCollisionEnter(Collision collision) {
+      if (collision.gameObject.TryGetComponent(out PlayerHandler playerHandler))
+        playerHandler.Damage(contactDamagePower);
     }
 
     public override void Damage(float damage) {

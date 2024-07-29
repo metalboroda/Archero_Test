@@ -337,6 +337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 100
+  contactDamagePower: 10
 --- !u!114 &7360271180043202128
 MonoBehaviour:
   m_ObjectHideFlags: 0

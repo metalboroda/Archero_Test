@@ -28,7 +28,7 @@ namespace Assets.Scripts.Character.Enemy.States
 
     private void PatrollingMovement() {
       AgentMovementService.StartMoveTo(false,
-        NavMeshService.GetRandomPointOnNavMesh(FlyingEnemyController.transform.position, EnemyMovementHandler.PatrollingRadius),
+        NavMeshService.GetRandomPointOnNavMesh(EnemyMovementHandler.StartPoint, EnemyMovementHandler.PatrollingRadius),
         EnemyMovementHandler.MinPatrollingIdle, EnemyMovementHandler.MaxIdlePatrolling, PatrollingMovement);
     }
   }

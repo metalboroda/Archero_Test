@@ -1,4 +1,5 @@
 using Assets.__Game.Scripts.Infrastructure;
+using Assets.Scripts.Enums;
 using Assets.Scripts.WeaponSystem;
 using UnityEngine;
 
@@ -86,6 +87,15 @@ namespace __Game.Resources.Scripts.EventBus
     public struct CoinReceived : IEvent
     {
       public int Value;
+    }
+
+    public struct AllEnemiesAreDead : IEvent { }
+    #endregion
+
+    #region UI
+    public struct UIButtonPressed : IEvent
+    {
+      public ButtonType ButtonType;
     }
     #endregion
   }

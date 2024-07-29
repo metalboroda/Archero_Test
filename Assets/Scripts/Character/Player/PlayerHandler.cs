@@ -1,5 +1,7 @@
 using __Game.Resources.Scripts.EventBus;
 using Assets.Scripts.Character.Player.States;
+using Assets.Scripts.GameManagement;
+using Assets.Scripts.GameManagement.States;
 using Assets.Scripts.Item;
 using Assets.Scripts.Services.Character;
 using UnityEngine;
@@ -14,9 +16,12 @@ namespace Assets.Scripts.Character.Player
     private Rigidbody _rigidbody;
 
     private PlayerController _playerController;
+    private GameBootstrapper _gameBootstrapper;
 
     protected override void Awake() {
       base.Awake();
+
+      _gameBootstrapper = GameBootstrapper.Instance;
 
       _rigidbody = GetComponent<Rigidbody>();
       _playerController = GetComponent<PlayerController>();
@@ -57,6 +62,8 @@ namespace Assets.Scripts.Character.Player
       });
 
       EventBus<EventStructs.PlayerDead>.Raise(new EventStructs.PlayerDead());
+
+      _gameBootstrapper.FiniteStateMachine.ChangeState(new GameLoseState());
     }
   }
 }
