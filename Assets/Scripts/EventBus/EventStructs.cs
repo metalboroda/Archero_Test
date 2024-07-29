@@ -34,6 +34,12 @@ namespace __Game.Resources.Scripts.EventBus
     #endregion
 
     #region Player
+    public struct PlayerHealth : IEvent
+    {
+      public float MaxHealth;
+      public float CurrentHealth;
+    }
+
     public struct PlayerDead : IEvent { }
     #endregion
 
@@ -70,7 +76,8 @@ namespace __Game.Resources.Scripts.EventBus
     #endregion
 
     #region GameManagement
-    public struct CoinReceived : IEvent {
+    public struct CoinReceived : IEvent
+    {
       public int Value;
     }
     #endregion

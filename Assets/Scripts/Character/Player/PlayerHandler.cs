@@ -39,6 +39,10 @@ namespace Assets.Scripts.Character.Player
     }
 
     protected override void OnHealthChanged(float value) {
+      EventBus<EventStructs.PlayerHealth>.Raise(new EventStructs.PlayerHealth {
+        MaxHealth = MaxHealth,
+        CurrentHealth = value
+      });
     }
 
     protected override void OnDeath() {

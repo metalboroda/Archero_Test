@@ -1,29 +1,44 @@
 using __Game.Resources.Scripts.EventBus;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts.Canvas
 {
   public class GameCanvas : MonoBehaviour
   {
-    [SerializeField] private TextMeshProUGUI _coinCounterText;
+    [SerializeField] private Image playerHealthBar;
+    [Header("")]
+    [SerializeField] private TextMeshProUGUI coinCounterText;
 
-    private EventBinding<EventStructs.CoinReceived> _coinReceived;
+    private EventBinding<EventStructs.PlayerHealth> _playerHealthEvent;
+    private EventBinding<EventStructs.CoinReceived> _coinReceivedEvent;
 
     private void OnEnable() {
-      _coinReceived = new EventBinding<EventStructs.CoinReceived>(OnCoinReceived);
+      _playerHealthEvent = new EventBinding<EventStructs.PlayerHealth>(OnPlayerHealth);
+      _coinReceivedEvent = new EventBinding<EventStructs.CoinReceived>(OnCoinReceived);
     }
 
     private void OnDisable() {
-      _coinReceived.Remove(OnCoinReceived);
+      _playerHealthEvent.Remove(OnPlayerHealth);
+      _coinReceivedEvent.Remove(OnCoinReceived);
     }
 
     private void Start() {
-      _coinCounterText.text = "0";
+      coinCounterText.text = "0";
+    }
+
+    private void OnPlayerHealth(EventStructs.PlayerHealth playerHealth) {
+      float maxHealth = playerHealth.MaxHealth;
+      float currentHealth = playerHealth.CurrentHealth;
+
+      float fillAmount = currentHealth / maxHealth;
+
+      playerHealthBar.fillAmount = fillAmount;
     }
 
     private void OnCoinReceived(EventStructs.CoinReceived coinReceived) {
-      _coinCounterText.text = coinReceived.Value.ToString();
+      coinCounterText.text = coinReceived.Value.ToString();
     }
   }
 }
