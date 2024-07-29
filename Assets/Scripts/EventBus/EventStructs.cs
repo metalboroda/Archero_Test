@@ -68,5 +68,11 @@ namespace __Game.Resources.Scripts.EventBus
       public int Value;
     }
     #endregion
+
+    #region GameManagement
+    public struct CoinReceived : IEvent {
+      public int Value;
+    }
+    #endregion
   }
 }

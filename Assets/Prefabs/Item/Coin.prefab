@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 10
+  impulseForce: 5
   pickupParticles: {fileID: 1624714524768532, guid: 10871fe45c5bd4a4797a9b0c23b291f5, type: 3}
 --- !u!1001 &448158538302495767
 PrefabInstance:

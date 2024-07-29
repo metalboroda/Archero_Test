@@ -13,6 +13,8 @@ namespace Assets.Scripts.Item
     [Space]
     [SerializeField] private GameObject pickupParticles;
 
+    private bool _pickedUp;
+
     private Rigidbody _rigidbody;
 
     private void Awake() {
@@ -32,6 +34,10 @@ namespace Assets.Scripts.Item
     }
 
     public void Pickup() {
+      if (_pickedUp == true) return;
+
+      _pickedUp = true;
+
       float destroyTime = 0.001f;
 
       EventBus<EventStructs.CoinPickedUp>.Raise(new EventStructs.CoinPickedUp { Value = value });
