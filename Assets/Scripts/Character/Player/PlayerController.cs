@@ -32,9 +32,5 @@ namespace Assets.Scripts.Character.Player
     protected override void FixedUpdate() {
       FiniteStateMachine.CurrentState.FixedUpdate();
     }
-
-    protected override void OnDestroy() {
-      FiniteStateMachine.CurrentState.Exit();
-    }
   }
 }

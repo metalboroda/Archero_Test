@@ -10,6 +10,7 @@ namespace Assets.Scripts.GameManagement
     [SerializeField] private GameObject gameCanvas;
     [SerializeField] private GameObject winCanvas;
     [SerializeField] private GameObject loseCanvas;
+    [SerializeField] private GameObject pauseCanvas;
 
     private List<GameObject> _canvases = new List<GameObject>();
 
@@ -31,6 +32,7 @@ namespace Assets.Scripts.GameManagement
       _canvases.Add(gameCanvas);
       _canvases.Add(winCanvas);
       _canvases.Add(loseCanvas);
+      _canvases.Add(pauseCanvas);
     }
 
     private void SwitchCanvasOnState(EventStructs.StateChanged stateChanged) {
@@ -44,6 +46,10 @@ namespace Assets.Scripts.GameManagement
         case GameLoseState:
           SwitchCanvas(loseCanvas);
           break;
+        case GamePauseState:
+          SwitchCanvas(pauseCanvas);
+          break;
+
       }
     }
 
