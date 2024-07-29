@@ -18,9 +18,8 @@ namespace Assets.Scripts.Canvas
     }
 
     private void OnEnable() {
-      // Temporary
       continueButton.onClick.AddListener(() => {
-        _gameBootstrapper.FiniteStateMachine.ChangeState(new GameplayState());
+        EventBus<EventStructs.UIButtonPressed>.Raise(new EventStructs.UIButtonPressed { ButtonType = Enums.ButtonType.Continue });
       });
 
       restartButton.onClick.AddListener(() => {

@@ -1,11 +1,10 @@
 using __Game.Resources.Scripts.EventBus;
 using Assets.Scripts.GameManagement.States;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.GameManagement
 {
-  public class LevelManager : MonoBehaviour
+  public class StateManager : MonoBehaviour
   {
     private GameBootstrapper _gameBootstrapper;
 
@@ -24,15 +23,14 @@ namespace Assets.Scripts.GameManagement
     }
 
     private void OnUIButtonPressed(EventStructs.UIButtonPressed uiButtonPressed) {
-      if (uiButtonPressed.ButtonType == Enums.ButtonType.Restart) {
-        RestartLevel();
-
-        _gameBootstrapper.FiniteStateMachine.ChangeState(new GameplayState());
+      switch (uiButtonPressed.ButtonType) {
+        case Enums.ButtonType.Continue:
+          _gameBootstrapper.FiniteStateMachine.ChangeState(new GameplayState());
+          break;
+        case Enums.ButtonType.Pause:
+          _gameBootstrapper.FiniteStateMachine.ChangeState(new GamePauseState());
+          break;
       }
-    }
-
-    public void RestartLevel() {
-      SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
   }
 }

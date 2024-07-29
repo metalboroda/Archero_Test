@@ -28,9 +28,8 @@ namespace Assets.Scripts.Canvas
       _playerHealthEvent = new EventBinding<EventStructs.PlayerHealth>(OnPlayerHealth);
       _coinReceivedEvent = new EventBinding<EventStructs.CoinReceived>(OnCoinReceived);
 
-      // Temporary
       pauseButton.onClick.AddListener(() => {
-        _gameBootstrapper.FiniteStateMachine.ChangeState(new GamePauseState());
+        EventBus<EventStructs.UIButtonPressed>.Raise(new EventStructs.UIButtonPressed { ButtonType = Enums.ButtonType.Pause });
       });
     }
 
