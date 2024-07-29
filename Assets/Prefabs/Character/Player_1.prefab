@@ -84,6 +84,7 @@ GameObject:
   - component: {fileID: 4952545413362146488}
   - component: {fileID: 3047712552214461611}
   - component: {fileID: 2019692134558752978}
+  - component: {fileID: 2023946787468973644}
   m_Layer: 10
   m_Name: Player_1
   m_TagString: Untagged
@@ -232,7 +233,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 100
-  AimPoint: {fileID: 1733022010391862867}
   capsuleTrigger: {fileID: 1552043412352059047}
 --- !u!114 &3191379339975159540
 MonoBehaviour:
@@ -282,6 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: 235c00468c2bdbf42b34aa80c7f21b3e, type: 2}
+  weaponLookAtSpeed: 25
 --- !u!114 &4952545413362146488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,6 +326,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTarget: {fileID: 8892715246701005360}
+--- !u!114 &2023946787468973644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781177172212328454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d30cbc572d7c9d4cbe00e59405ad2bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3849826184338279794
 GameObject:
   m_ObjectHideFlags: 0

@@ -37,6 +37,13 @@ namespace __Game.Resources.Scripts.EventBus
     public struct PlayerDead : IEvent { }
     #endregion
 
+    #region Enemy
+    public struct EnemyDead : IEvent
+    {
+      public Vector3 Position;
+    }
+    #endregion
+
     #region Enemy Detection
     public struct EnemyDetected : IEvent
     {
@@ -52,6 +59,13 @@ namespace __Game.Resources.Scripts.EventBus
       public string AnimationName;
       public WeaponHandler WeaponHandler;
       public Transform LeftHandPoint;
+    }
+    #endregion
+
+    #region Item
+    public struct CoinPickedUp : IEvent
+    {
+      public int Value;
     }
     #endregion
   }

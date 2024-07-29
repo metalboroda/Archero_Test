@@ -45,6 +45,8 @@ namespace Assets.Scripts.Character.Enemy
     }
 
     protected override void OnDeath() {
+      int deathTime = 10;
+
       _enemyController.FiniteStateMachine.ChangeState(new EnemyDeathState(_enemyController));
 
       _capsuleCollider.enabled = false;
@@ -54,7 +56,9 @@ namespace Assets.Scripts.Character.Enemy
         TransformID = transform.GetInstanceID()
       });
 
-      Destroy(gameObject, 10);
+      EventBus<EventStructs.EnemyDead>.Raise(new EventStructs.EnemyDead { Position = transform.position });
+
+      Destroy(gameObject, deathTime);
     }
 
     private void OnPlayerDeath() {

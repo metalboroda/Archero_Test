@@ -45,6 +45,8 @@ namespace Assets.Scripts.Character.Enemy
         TransformID = transform.GetInstanceID()
       });
 
+      EventBus<EventStructs.EnemyDead>.Raise(new EventStructs.EnemyDead { Position = transform.position });
+
       Destroy(gameObject);
     }
 
