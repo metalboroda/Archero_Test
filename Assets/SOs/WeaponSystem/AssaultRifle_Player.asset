@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <WeaponPrefab>k__BackingField: {fileID: 5292108845969532097, guid: 579a707b6198dfb4e8d0a06c0f797c7e, type: 3}
   <WeaponName>k__BackingField: AssaultRifle
-  <Damage>k__BackingField: 25
+  <Damage>k__BackingField: 15
   <FirstShotDelay>k__BackingField: 0
-  <FireRate>k__BackingField: 0.5
+  <FireRate>k__BackingField: 0.25
   <MovementAnimation>k__BackingField: AssaultRifleMovement2D
   <ProjectilePrefab>k__BackingField: {fileID: 2285816256493072417, guid: 387fa6d60d222904aa1c5557cacefb2b, type: 3}
   <ProjectileSpeed>k__BackingField: 30

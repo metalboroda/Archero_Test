@@ -282,6 +282,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: 235c00468c2bdbf42b34aa80c7f21b3e, type: 2}
+  useRandomWeapon: 0
+  weapons:
+  - {fileID: 11400000, guid: 235c00468c2bdbf42b34aa80c7f21b3e, type: 2}
+  - {fileID: 11400000, guid: bbb53986968dce84fb6147c71eeab207, type: 2}
   weaponLookAtSpeed: 25
 --- !u!114 &4952545413362146488
 MonoBehaviour:

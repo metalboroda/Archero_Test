@@ -440,6 +440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 100
+  contactDamagePower: 10
 --- !u!114 &3033989557735670769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -495,6 +496,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: a8bb9cdb2eccca749b792ce75be8d3df, type: 2}
+  useRandomWeapon: 1
+  weapons:
+  - {fileID: 11400000, guid: a8bb9cdb2eccca749b792ce75be8d3df, type: 2}
+  - {fileID: 11400000, guid: 58de5744c374bea469d542f6fff4ef38, type: 2}
   weaponLookAtSpeed: 25
 --- !u!114 &4059978323810103281
 MonoBehaviour:

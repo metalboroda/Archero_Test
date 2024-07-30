@@ -9,6 +9,9 @@ namespace Assets.Scripts.Character
   public class CharacterWeaponHandler : MonoBehaviour
   {
     [SerializeField] private WeaponSO weapon;
+    [Header("Random Weapon")]
+    [SerializeField] private bool useRandomWeapon;
+    [SerializeField] private WeaponSO[] weapons;
     [Header("")]
     [SerializeField] private float weaponLookAtSpeed = 25f;
 
@@ -68,9 +71,18 @@ namespace Assets.Scripts.Character
     }
 
     private void EquipWeapon() {
-      if (weapon != null) {
-        EquipWeapon(weapon);
+      WeaponSO selectedWeapon = null;
+
+      if (useRandomWeapon == true && weapons.Length > 0) {
+        int randomIndex = Random.Range(0, weapons.Length);
+
+        selectedWeapon = weapons[randomIndex];
       }
+      else {
+        selectedWeapon = weapon;
+      }
+
+      EquipWeapon(selectedWeapon);
     }
 
     private void EquipWeapon(WeaponSO newWeapon) {
@@ -117,7 +129,6 @@ namespace Assets.Scripts.Character
 
       while (true) {
         Attack();
-
         yield return new WaitForSeconds(_currentWeapon.FireRate);
       }
     }
